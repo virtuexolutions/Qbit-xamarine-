@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:picker="clr-namespace:QBid.Controls"
+             x:Class="QBid.Views.HoldQuotationByNegotiatorView" 
+             Title="Hold Quotation"
+             xmlns:vm="clr-namespace:QBid.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:HoldQuotationByNegotiatorViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame Grid.Row="0" VerticalOptions="FillAndExpand" Padding="0"  BorderColor="{StaticResource AppBlackColor}" Margin="20,20,15,20"  HorizontalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Vertical" Margin="10" HorizontalOptions="FillAndExpand">
+
+                <StackLayout >
+                    <Label Text="Select Reason"  Style="{StaticResource LoginEntryLabel}"  HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" IsVisible="{Binding IsVisibleselectReasonErrorMessage}"  />
+                    <Grid RowDefinitions="Auto" ColumnDefinitions="*,Auto">
+                        <Image Source="DownIconBlack.png" Grid.Row="0" Grid.Column="1" Aspect="AspectFit" Margin="0,0,0,0" HeightRequest="30" ></Image>
+                        <picker:BorderlessPickerRenderer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" SelectedItem="{Binding ReasonName}" ItemsSource="{Binding ListOfSelectReason}" ItemDisplayBinding="{Binding Name}"  Title="Select Reason" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                    <BoxView HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Label Text="{Binding SelectReasonErrorMessage}" IsVisible="{Binding IsVisibleselectReasonErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" Margin="5"/>
+                    <Frame  Padding="0" BackgroundColor="Transparent">
+                        <Editor Keyboard="Plain"  Text="{Binding HoldComment}"  AutoSize="TextChanges" MaxLength="180" />
+                       
+                    </Frame>
+                    <Label Text="{Binding HoldCommentErrorMessage}"  IsVisible="{Binding IsVisibleholdCommentErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" Margin="5" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand"  VerticalOptions="EndAndExpand">
+                    <Button x:Name="NoBtn" Command="{Binding BackCommand}"  TextColor="{StaticResource AppWhiteColor}" HeightRequest="40" Text="Cancel" BackgroundColor="{StaticResource AppRedColor}"/>
+                    <Button x:Name="YesBtn" TextColor="{StaticResource AppWhiteColor}" HeightRequest="40" Text="Submit" BackgroundColor="{StaticResource AppColor} " Command="{Binding CommandOnSubmit}"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+    
+
+    
+</ContentPage>

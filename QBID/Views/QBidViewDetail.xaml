@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:panview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:Loader="clr-namespace:QBid.Views.ContentViews" 
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"            
+             x:Class="QBid.Views.QBidViewDetail" 
+             BackgroundColor="{StaticResource AppWhiteColor}" 
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
+    <!--Title="QBid Details"-->
+             
+    <ContentPage.BindingContext>
+        <vm:QBidViewDetailViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid  BackgroundColor="{StaticResource AppWhiteColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+          
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{x:Static resource:ResourceValues.LabelBackArrow}"  Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommandOnBackButton}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="{x:Static resource:ResourceValues.TitleQBidDetail}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Medium"/>
+            </Grid>
+            
+            <StackLayout Margin="10" Grid.Row="1">
+                <StackLayout HeightRequest="25" IsVisible="{Binding IsRecordNotAvail}" Margin="0,10,0,10">
+                    <Grid Padding="0" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="16.5*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="16.5*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="16.5*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="16.5*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="16.5*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="16.5*"/>
+                            <ColumnDefinition Width="15"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame HasShadow="False" BackgroundColor="{StaticResource AppColor}" HeightRequest="5" Grid.Column="0" Grid.ColumnSpan="{Binding FirstColSpan}" Padding="0" VerticalOptions="CenterAndExpand"/>
+
+                        <Frame HasShadow="False" VerticalOptions="CenterAndExpand" Grid.Column="0" Padding="0" BackgroundColor="{Binding FirstColFrameColor}" HeightRequest="15" WidthRequest="15" CornerRadius="7.5">
+                            <StackLayout>
+                                <Image Source="{x:Static resource:ResourceValues.SourcecheckWhite}" IsVisible="{Binding IsFirstStepCompleted}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Frame Padding="0" IsVisible="{Binding IsFirstStepInProcessing}"  BackgroundColor="{Binding AppWhiteColor}" HeightRequest="5" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="8" CornerRadius="4"/>
+                                <Label Text="0" IsVisible="{Binding IsFirstStepPending}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="{Binding SecoundColStart}" HasShadow="False" BackgroundColor="{StaticResource AppLightGrayColor}" HeightRequest="5"  Grid.ColumnSpan="{Binding SecoundColSpan}" Padding="0" VerticalOptions="CenterAndExpand"/>
+
+                        <Frame HasShadow="False" VerticalOptions="CenterAndExpand" Grid.Column="2" Padding="0" BackgroundColor="{Binding SecoundColFrameColor}" HeightRequest="15" WidthRequest="15" CornerRadius="7.5">
+                            <StackLayout>
+                                <Image Source="{x:Static resource:ResourceValues.SourcecheckWhite}" IsVisible="{Binding IsSecoundStepCompleted}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Frame Padding="0" IsVisible="{Binding IsSecoundStepInProcessing}"  BackgroundColor="{Binding AppWhiteColor}" HeightRequest="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="8" CornerRadius="4"/>
+                                <Label Text="1" IsVisible="{Binding IsSecoundStepPending}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="{Binding SecoundColStart}" IsVisible="false" HasShadow="False" BackgroundColor="{StaticResource AppLightGrayColor}" HeightRequest="5"  Grid.ColumnSpan="{Binding SecoundColSpan}" Padding="0" VerticalOptions="CenterAndExpand"/>
+
+                        <Frame HasShadow="False" VerticalOptions="CenterAndExpand" Grid.Column="4" Padding="0" BackgroundColor="{Binding ThirdColFrameColor}" HeightRequest="15" WidthRequest="15" CornerRadius="7.5">
+                            <StackLayout>
+                                <Image Source="{x:Static resource:ResourceValues.SourcecheckWhite}" IsVisible="{Binding IsThirdStepCompleted}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Frame Padding="0" IsVisible="{Binding IsThirdStepInProcessing}"  BackgroundColor="{Binding AppWhiteColor}" HeightRequest="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="8" CornerRadius="4"/>
+                                <Label Text="2" IsVisible="{Binding IsThirdStepPending}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="{Binding SecoundColStart}" IsVisible="false" HasShadow="False" BackgroundColor="{StaticResource AppLightGrayColor}" HeightRequest="5"  Grid.ColumnSpan="{Binding SecoundColSpan}" Padding="0" VerticalOptions="CenterAndExpand"/>
+
+                        <Frame HasShadow="False" VerticalOptions="CenterAndExpand" Grid.Column="6" Padding="0" BackgroundColor="{Binding FourthColFrameColor}" HeightRequest="15" WidthRequest="15" CornerRadius="7.5">
+                            <StackLayout>
+                                <Image Source="{x:Static resource:ResourceValues.SourcecheckWhite}" IsVisible="{Binding IsFourthStepCompleted}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Frame Padding="0" IsVisible="{Binding IsFourthStepInProcessing}"  BackgroundColor="{Binding AppWhiteColor}" HeightRequest="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="8" CornerRadius="4"/>
+                                <Label Text="3" IsVisible="{Binding IsFourthStepPending}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="10"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="{Binding SecoundColStart}" IsVisible="false" HasShadow="False" BackgroundColor="{StaticResource AppLightGrayColor}" HeightRequest="5"  Grid.ColumnSpan="{Binding SecoundColSpan}" Padding="0" VerticalOptions="CenterAndExpand"/>
+
+                        <Frame HasShadow="False" VerticalOptions="CenterAndExpand" Grid.Column="8" Padding="0" BackgroundColor="{Binding FifthColFrameColor}" HeightRequest="15" WidthRequest="15" CornerRadius="7.5">
+                            <StackLayout>
+                                <Image Source="{x:Static resource:ResourceValues.SourcecheckWhite}"  IsVisible="{Binding IsFifthStepCompleted}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Frame Padding="0" IsVisible="{Binding IsFifthStepInProcessing}"  BackgroundColor="{Binding AppWhiteColor}" HeightRequest="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="8" CornerRadius="4"/>
+                                <Label Text="4" IsVisible="{Binding IsFifthStepPending}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="10"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="{Binding SecoundColStart}" IsVisible="false" HasShadow="False" BackgroundColor="{StaticResource AppLightGrayColor}" HeightRequest="5"  Grid.ColumnSpan="{Binding SecoundColSpan}" Padding="0" VerticalOptions="CenterAndExpand"/>
+
+                        <Frame HasShadow="False" VerticalOptions="CenterAndExpand" Grid.Column="10" Padding="0" BackgroundColor="{Binding SixthColFrameColor}" HeightRequest="15" WidthRequest="15" CornerRadius="7.5">
+                            <StackLayout>
+                                <Image Source="{x:Static resource:ResourceValues.SourcecheckWhite}" IsVisible="{Binding IsSixthStepCompleted}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Frame Padding="0" IsVisible="{Binding IsSixthStepInProcessing}"  BackgroundColor="{Binding AppWhiteColor}" HeightRequest="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="8" CornerRadius="4"/>
+                                <Label Text="5" IsVisible="{Binding IsSixthStepPending}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="10"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="{Binding SecoundColStart}" IsVisible="false" HasShadow="False" BackgroundColor="{StaticResource AppLightGrayColor}" HeightRequest="5"  Grid.ColumnSpan="{Binding SecoundColSpan}" Padding="0" VerticalOptions="CenterAndExpand"/>
+
+                        <Frame HasShadow="False" VerticalOptions="CenterAndExpand" Grid.Column="12" Padding="0" BackgroundColor="{Binding SeventhColFrameColor}" HeightRequest="15" WidthRequest="15" CornerRadius="7.5">
+                            <StackLayout>
+                                <Image Source="{x:Static resource:ResourceValues.SourceDecline}"  IsVisible="{Binding IsSeventhStepDeclined}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Image Source="{x:Static resource:ResourceValues.SourcecheckWhite}" IsVisible="{Binding IsSeventhStepCompleted}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="10" WidthRequest="10"/>
+                                <Frame HasShadow="False" Padding="0" IsVisible="{Binding IsSeventhStepInProcessing}"  BackgroundColor="{Binding AppWhiteColor}" HeightRequest="8" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="8" CornerRadius="4"/>
+                                <Label Text="6" IsVisible="{Binding IsSeventhStepPending}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="10"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommandOnViewQBidStatus}" CommandParameter="{Binding .}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <ScrollView IsVisible="{Binding IsRecordNotAvail}" Orientation="Vertical">
+                    <StackLayout Orientation="Vertical">
+                        <behaviors:Expander IsExpanded="True">
+                            <behaviors:Expander.Header>
+                                <Grid>
+                                    <panview:PancakeView CornerRadius="10,10,0,0" >    <!--Shadow="{panview:ShadowMarkup Color=#FF0000, Offset='10,10'}"-->
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AppColor}">
+                                            <Label Text="{Binding LableText}" BackgroundColor="{StaticResource AppColor}" TextColor="{StaticResource AppWhiteColor}" Padding="10" FontAttributes="Bold" FontSize="Small"/>
+                                            <Image IsVisible="true" Source="{x:Static resource:ResourceValues.Sourcephone_call}" HeightRequest="15" WidthRequest="15" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding CommandOnCalling}" CommandParameter="{Binding .}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image Source="{x:Static resource:ResourceValues.Sourceexpand}"  HorizontalOptions="End" VerticalOptions="CenterAndExpand" HeightRequest="15" WidthRequest="15" Margin="5" >
+                                                <Image.Triggers>
+                                                    <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type behaviors:Expander}}, Path=IsExpanded}" Value="True">
+                                                        <Setter Property="Source" Value="collapse.png" />
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                        </StackLayout>
+                                    </panview:PancakeView>
+                                </Grid>
+                            </behaviors:Expander.Header>
+                            <Frame BackgroundColor="{StaticResource AppWhiteColor}" HasShadow="False" IsClippedToBounds="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Row="0"  HorizontalOptions="FillAndExpand">
+                                        <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.TextName}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1"  Text="{Binding FacilityName}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand">
+                                        <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.TextRepresentativeName}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1"  Text="{Binding FacilityRepresentative}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2"  HorizontalOptions="FillAndExpand">
+                                        <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.PlaceholderEmail}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1"  Text="{Binding FacilityEmail}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="3"  HorizontalOptions="FillAndExpand">
+                                        <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.LabelContact}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1"  Text="{Binding FacilityContact}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="4"  HorizontalOptions="FillAndExpand">
+                                        <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.LabelAddress}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1"  Text="{Binding FacilityAddress}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                    </Grid>
+                                    <Grid Grid.Row="5"  HorizontalOptions="FillAndExpand">
+                                        <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.TextServiceName}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1"  Text="{Binding ServiceName}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                    </Grid>
+                                    <Grid Grid.Row="6"  HorizontalOptions="FillAndExpand" >
+                                        <Label Grid.Column="0"  Text="Note and Benefit"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1"  Text="Click here to view" TextDecorations="Underline" TextColor="{StaticResource AppHyperlinkColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CommandOnNoteAndBenefit}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </behaviors:Expander>
+                        <behaviors:Expander IsExpanded="True" IsVisible="{Binding IsNegotiatorAvailble}">
+                            <behaviors:Expander.Header>
+                                <Grid>
+                                    <panview:PancakeView CornerRadius="10,10,0,0" >  
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AppColor}">
+                                            <Label Text="{Binding LablText}" TextColor="{StaticResource AppWhiteColor}" Padding="10" FontAttributes="Bold" FontSize="Small"/>
+                                            <Image IsVisible="true" Source="{x:Static resource:ResourceValues.Sourcephone_call}"  HeightRequest="15" WidthRequest="15" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding CommandOnNegoCalling}" CommandParameter="{Binding .}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image Source="{x:Static resource:ResourceValues.Sourceexpand}"  HorizontalOptions="End" VerticalOptions="CenterAndExpand" HeightRequest="15" WidthRequest="15" Margin="5">
+                                                <Image.Triggers>
+                                                    <DataTrigger TargetType="Image"
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type behaviors:Expander}}, Path=IsExpanded}" Value="True">
+                                                     <Setter Property="Source" Value="collapse.png" />
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                        </StackLayout>
+                                    </panview:PancakeView>
+                                </Grid>
+                            </behaviors:Expander.Header>
+
+                            <Frame BackgroundColor="{StaticResource AppWhiteColor}" Margin="0" HasShadow="False" CornerRadius="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand"  >
+                                        <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.TextName}" TextColor="{StaticResource AppBlackColor}"  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1" Text="{Binding NegotiatorName}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+
+                                    </Grid >
+
+
+                                    <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand"  >
+                                        <Label  Grid.Column="0" Text="{x:Static resource:ResourceValues.PlaceholderEmail}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label  Grid.Column="1" Text="{Binding NegotiatorEmail}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" >
+                                        <Label  Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelContact}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label  Grid.Column="1" Text="{Binding NegotiatorContactMobile}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="3" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" >
+                                        <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelAddress}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1" Text="{Binding NegotiatorAddress}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                </Grid>
+                            </Frame>
+                        </behaviors:Expander>
+
+                        <panview:PancakeView CornerRadius="10,10,0,0">
+                            <StackLayout>
+                                <Label Text="{Binding LblText}" BackgroundColor="{StaticResource AppColor}" TextColor="{StaticResource AppWhiteColor}" Padding="10" FontAttributes="Bold" FontSize="Small"/>
+                            </StackLayout>
+                        </panview:PancakeView>
+
+                        <ScrollView HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="{StaticResource AppWhiteColor}" Padding="0" HorizontalScrollBarVisibility="Never">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout  Orientation="Horizontal" Spacing="0" Margin="5">
+                                    <StackLayout Margin="5" Spacing="0" BindableLayout.ItemsSource="{Binding StackLayOutList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Frame Padding="0" CornerRadius="8" IsClippedToBounds="True" HasShadow="False"  HorizontalOptions="StartAndExpand">
+                                                        <ContentView Margin="0" Content="{Binding StackLayOutHeaderList, Mode=TwoWay}"/>
+                                                    </Frame>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+
+                                    <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding StackLayOutList}"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Frame Padding="0" CornerRadius="8" IsClippedToBounds="True" HasShadow="False"  HorizontalOptions="StartAndExpand">
+                                                        <ContentView Margin="0" Content="{Binding StackLayOutItemList, Mode=TwoWay}"/>
+                                                    </Frame>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  ColumnSpacing="0"> 
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <StackLayout Grid.Row="0" Grid.Column="0" >
+                                            <Label Text="Total" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <Grid Grid.Column="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="103"/>
+                                                <ColumnDefinition Width="90"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="110"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="0">
+                                                <Label Grid.Column="0" Text="{Binding TotalPrice}" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center" />
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="2">
+                                                <Label Text="{Binding TotalNegotiatedPrice}" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                               
+                                </Grid>
+                            </StackLayout>
+                        </ScrollView>
+                        
+                        <StackLayout Orientation="Vertical" Spacing="0" Margin="10,0,5,10">
+                            <Grid RowSpacing="12" Margin="0,0,0,0" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="70*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Small" TextColor="{StaticResource AppBlackColor}" Text="{x:Static resource:ResourceValues.TextTotalSaving}"  HorizontalTextAlignment="Center"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding TotalSaving}" FontAttributes="Bold" FontSize="Small" TextColor="{StaticResource AppBlackColor}"  HorizontalTextAlignment="End"/>
+                            </Grid>
+                        </StackLayout>
+                        
+                        <Grid ColumnDefinitions="5*,5*" ColumnSpacing="10" Margin="10,0,10,0" IsVisible="{Binding IsShowHide}">   <!--WidthRequest="170"-->
+                            <Button Grid.Column="0" Text="{x:Static resource:ResourceValues.TextDeclineentireQBid}"  HeightRequest="40"  Padding="10" Command="{Binding DeclinePriceByMemberCommand}" CommandParameter="{Binding .}" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppRedColor}" HorizontalOptions="FillAndExpand" />
+                            <Button Grid.Column="1" Text="{x:Static resource:ResourceValues.TextApproveQBid}"  HeightRequest="40" Padding="10" Command="{Binding ApprovePriceByMemberCommand}"  CommandParameter="2" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" />
+                           </Grid>
+                   
+                        
+                        <StackLayout  Orientation="Horizontal" IsVisible="{Binding IsShowHireNegotiator}" >
+                            <Button Text="{Binding HireNegotiatorBtnText}"  HeightRequest="40" Padding="10" Command="{Binding HireNegotiatorDialogShowCommand}" CommandParameter="{Binding .}" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppBlueColor}" HorizontalOptions="CenterAndExpand" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            
+                            <Grid ColumnDefinitions="6.5*,3.5*" Margin="0,0,0,10">
+                                <Label  Text="{Binding QBidStatusMessage}" IsVisible="{Binding ISQuotationApproved}" TextColor="{Binding QBidStatusColor}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+                                <Image Grid.Column="1" IsVisible="{Binding ShowTransferAmountMessage}"  Source="{x:Static resource:ResourceValues.SourceWarningInfo}"   HeightRequest="25" WidthRequest="25" HorizontalOptions="StartAndExpand">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer  Command="{Binding CommandOnShowTransferAmountMessage}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </StackLayout>
+
+                        <behaviors:Expander IsExpanded="True" IsVisible="{Binding ISQuotationApproved}">
+                            <behaviors:Expander.Header>
+                                <Grid>
+                                    <panview:PancakeView CornerRadius="10,10,0,0" >
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AppColor}">
+                                            <Label Text="{Binding LblAccountText}" TextColor="{StaticResource AppWhiteColor}" Padding="10" FontAttributes="Bold" FontSize="Small"/>
+                                            <Image Source="{x:Static resource:ResourceValues.Sourceexpand}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="15" WidthRequest="15" Margin="5">
+                                                <Image.Triggers>
+                                                    <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type behaviors:Expander}}, Path=IsExpanded}" Value="True">
+                                                        <Setter Property="Source" Value="collapse.png" />
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                        </StackLayout>
+                                    </panview:PancakeView>
+                                </Grid>
+                            </behaviors:Expander.Header>
+                            <Frame BackgroundColor="{StaticResource AppWhiteColor}"  Margin="0" HasShadow="False" CornerRadius="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Row="0" HorizontalOptions="FillAndExpand"  >
+                                        <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.TextTotalSavings}" TextColor="{StaticResource AppBlackColor}"  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1" Text="{Binding TotalSavingPayment}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid >
+
+                                    <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand"  >
+                                        <Label  Grid.Column="0" Text="{Binding ApprovedDeclinedFieldName}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label  Grid.Column="1" Text="{Binding QuotationApprovedDate}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" >
+                                        <Label  Grid.Column="0" Text="{x:Static resource:ResourceValues.TextQBIDCharges}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label  Grid.Column="1" Text="{Binding QBIDChargesFee}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                    </Grid>
+
+                                    <Grid Grid.Row="3" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" >
+                                        <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.TextInvoice}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1" Text="{Binding Invoice}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                    </Grid>
+                                    <Grid Grid.Row="4" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" >
+                                        <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.TextTransaction}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1" Text="{Binding Transaction}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                    </Grid>
+                                    <Grid Grid.Row="5" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" >
+                                        <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.TextTransactionStatus}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                        <Label Grid.Column="1" Text="{Binding TransactionStatus}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                    </Grid> 
+
+                                </Grid>
+                            </Frame>
+
+                        </behaviors:Expander>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <!--  for call and sms UI-->
+            <BoxView Grid.Row="1"  VerticalOptions="FillAndExpand" Margin="0,-6,0,0"  IsVisible="{Binding IsCallorSmsShow}" HorizontalOptions="FillAndExpand"  BackgroundColor="{x:StaticResource AppBlackColor}" Opacity="0.4">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_HideDrawer"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <panview:PancakeView Grid.Row="1"  IsVisible="{Binding IsCallorSmsShow}" HeightRequest="150" CornerRadius="20,20,0,0"  VerticalOptions="EndAndExpand" BackgroundColor="{x:StaticResource AppLightSkyColor}">
+                <StackLayout>
+                    <StackLayout>
+                        <BoxView HeightRequest="2" HorizontalOptions="CenterAndExpand" WidthRequest="60" CornerRadius=".5" VerticalOptions="StartAndExpand" BackgroundColor="{x:StaticResource AppBlackColor}" Margin="0,10,0,0"/>
+                        <StackLayout.GestureRecognizers>
+                            <DragGestureRecognizer DragStarting="DragGestureRecognizer_DragStarting"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="95*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="1" Command="{Binding CommandOnCallorSms}"/>
+                                 
+                                </StackLayout.GestureRecognizers>
+                                <Image  Source="{x:Static resource:ResourceValues.SourceCallingBlack}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="45"  WidthRequest="45"/>
+                                <Label Text="{x:Static resource:ResourceValues.LabelCall}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small" FontFamily="{DynamicResource RegularFontStyle}" TextColor="Black"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1"  Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="2" Command="{Binding CommandOnCallorSms}"/>
+                                 
+                                </StackLayout.GestureRecognizers>
+                                <Image Grid.Row="0" Source="{x:Static resource:ResourceValues.SourceSmsBlack}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="45" WidthRequest="45"/>
+                                <Label Text="{x:Static resource:ResourceValues.LabelSms}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small" FontFamily="{DynamicResource RegularFontStyle}" TextColor="Black"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </panview:PancakeView>
+            <!--==================-->
+            
+            <Grid Grid.Row="1" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait  VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+           
+            <Label Grid.Row="1" IsVisible="{Binding IsRecordsAvailable}" Text="{Binding RecordNotFound}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+            
+            <!--for hire negotiator dialog box-->
+            <Grid Grid.Row="1" IsVisible="{Binding IsPopupForHireNegoDisc}" Margin="0,-6,0,0"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid  BackgroundColor="{StaticResource AppBlackColor}" Opacity="0.4">
+                </Grid>
+                <Frame Padding="0" HasShadow="False" Margin="10,60,10,30" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" >
+                    <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="10">
+                        <Label Text="{Binding HireORChangeNegotiatorText}" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontAttributes="None" FontSize="Small" TextColor="{StaticResource AppBlackColor}"></Label>
+
+                        <StackLayout  Orientation="Horizontal" Margin="0,15,0,0" HorizontalOptions="CenterAndExpand">
+                            <!--<Frame HasShadow="False" Padding="10" BorderColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" VerticalOptions="CenterAndExpand" Margin="0" CornerRadius="10">
+                                <Label Text="{x:Static resource:ResourceValues.TextForNegotiation}" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding HireNegotiatorCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame> 
+                            <Frame HasShadow="False" Padding="10" BorderColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}"  VerticalOptions="CenterAndExpand" CornerRadius="10" Margin="40,0,0,0">
+                                <Label Text="{x:Static resource:ResourceValues.TextForDiscussion}" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="CenterAndExpand"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnHireDiscussion}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>-->
+                            <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75*"/>
+                                    <ColumnDefinition Width="25*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Text="{x:Static resource:ResourceValues.NoButtontext}" BackgroundColor="{StaticResource AppRedColor}" Command="{Binding CommandOnClosePopUp}" WidthRequest="90" HeightRequest="40" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="EndAndExpand"/>
+                                <Button Grid.Column="1" Text="{x:Static resource:ResourceValues.YesButtontext}" BackgroundColor="{StaticResource AppColor}" Command="{Binding HireNegotiatorCommand}" WidthRequest="100" HeightRequest="40" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="EndAndExpand"/>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <!--<Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CommandOnClosePopUp}" CommandParameter="{Binding .}"/>
+                </Grid.GestureRecognizers>-->
+            </Grid>
+
+            <!--for Special Note and Benefits dialog box-->
+            <Grid Grid.Row="1"  IsVisible="{Binding IsPopupForNoteandBenefits}" Margin="0,-6,0,0"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid  BackgroundColor="{StaticResource AppBlackColor}" Opacity="0.4"/>
+
+                <Grid BackgroundColor="{StaticResource AppWhiteColor}" Padding="5"  RowSpacing="3" Margin="10,0,10,0"    HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Frame Grid.Row="0"  BackgroundColor="{StaticResource AppLightWhiteColor}" Padding="0" HasShadow="False"  VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" >
+                        <behaviors:Expander IsExpanded="True" >
+                            <behaviors:Expander.Header>
+                                <Grid>
+                                    <panview:PancakeView CornerRadius="10,10,0,0" >
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AppColor}">
+                                            <Label Text="Special Notes" TextColor="{StaticResource AppWhiteColor}" Padding="10" FontAttributes="Bold" FontSize="Small"/>
+                                            <Image Source="{x:Static resource:ResourceValues.Sourceexpand}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="15" WidthRequest="15" Margin="5">
+                                                <Image.Triggers>
+                                                    <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type behaviors:Expander}}, Path=IsExpanded}" Value="True">
+                                                        <Setter Property="Source" Value="collapse.png" />
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                        </StackLayout>
+                                    </panview:PancakeView>
+                                </Grid>
+                            </behaviors:Expander.Header>
+
+                            <Frame  HeightRequest="200" BackgroundColor="{StaticResource AppWhiteColor}"  Margin="0" HasShadow="False" >
+                                <ScrollView  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding SpecialNote}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
+                                </ScrollView>
+                            </Frame>
+
+                        </behaviors:Expander>
+                    </Frame>
+
+                    <Frame  Grid.Row="1"  BackgroundColor="{StaticResource AppLightWhiteColor}" Padding="0" HasShadow="False" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" >
+                        <behaviors:Expander IsExpanded="True" >
+                            <behaviors:Expander.Header>
+                                <Grid >
+                                    <panview:PancakeView CornerRadius="10,10,0,0" >
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AppColor}">
+                                            <Label Text="Benefits" TextColor="{StaticResource AppWhiteColor}" Padding="10" FontAttributes="Bold" FontSize="Small"/>
+                                            <Image Source="{x:Static resource:ResourceValues.Sourceexpand}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="15" WidthRequest="15" Margin="5">
+                                                <Image.Triggers>
+                                                    <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type behaviors:Expander}}, Path=IsExpanded}" Value="True">
+                                                        <Setter Property="Source" Value="collapse.png" />
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+                                        </StackLayout>
+                                    </panview:PancakeView>
+                                </Grid>
+                            </behaviors:Expander.Header>
+
+                            <Frame HeightRequest="200" BackgroundColor="{StaticResource AppWhiteColor}"  Margin="0" HasShadow="False" >
+                                <ScrollView  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Benefits}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  />
+
+                                </ScrollView>
+                            </Frame>
+
+                        </behaviors:Expander>
+                    </Frame>
+                    <Button Grid.Row="2" Text="Done" Margin="0,5,0,0" WidthRequest="100" HeightRequest="40" Command="{Binding CommandOnClosePopUp}"  BackgroundColor="{StaticResource AppColor}" TextColor="{StaticResource AppWhiteColor}" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand"/>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
+

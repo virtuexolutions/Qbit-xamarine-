@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:views="clr-namespace:QBid.Views"
+            x:Class="QBid.Views.NegotiatorTabbbedPage"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+            xmlns:Vm="clr-namespace:QBid.ViewModels"
+            ios:Page.UseSafeArea="true"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            NavigationPage.HasNavigationBar="False" BarBackgroundColor="{StaticResource AppColor}" BarBackground="#2CD49C" UnselectedTabColor="{StaticResource AppGrayColor}"  SelectedTabColor="{StaticResource AppWhiteColor}">
+     
+    <TabbedPage.BindingContext>
+        <Vm:NegotiatorBaseViewModel x:Name="Vm"/>
+    </TabbedPage.BindingContext>
+    <!--Pages can be added as references or inline-->
+    <TabbedPage.Children>
+        <NavigationPage IsEnabled="{Binding IsEnableHome}" HeightRequest="25" WidthRequest="25" Title="Home" Icon="HomeIcon.png">
+            <x:Arguments>
+                <views:NegotiatorDetailView/>
+                
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage IsEnabled="{Binding IsEnableProfile}" Title="Profile" HeightRequest="25" WidthRequest="25" Icon="Profile.png">
+            <x:Arguments>
+                <views:ProfileView/>
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>

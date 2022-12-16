@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:picker="clr-namespace:QBid.Controls"
+             xmlns:resource="clr-namespace:QBid.QBidResource" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             xmlns:behavior="clr-namespace:QBid.Behaviors"
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:panview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             x:Class="QBid.Views.CardDetailView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Title="Card Detail">
+    <ContentPage.BindingContext>
+        <vm:CardDetailViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Image IsVisible="{Binding IsArrowShowHide}" Grid.Column="0" Source="BackArrow.png" Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommandOnBackForService}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="{x:Static resource:ResourceValues.TitleCardDetailPage}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Large"/>
+            </Grid>
+           
+            <StackLayout Grid.Row="1" Padding="15">
+                <StackLayout Spacing="10">
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label Style="{StaticResource CardEntryLabel}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static resource:ResourceValues.TitleCardNo}" />
+                                    <Span Text="*" TextColor="Red"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <picker:CustomEntry Text="{Binding CardNumber}" MaxLength="19" ReturnType="Next" Placeholder="{x:Static resource:ResourceValues.PlaceholderCardNo}" Keyboard="Numeric" VerticalOptions="CenterAndExpand">
+                            <picker:CustomEntry.Behaviors>
+                                <behavior:CreaditCardMask x:Name="CreditCard"/>
+                            </picker:CustomEntry.Behaviors>
+                        </picker:CustomEntry>
+                        <BoxView  HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        <Label Text="{Binding CardNumberErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleCardNumberError}"/>
+                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="65*"/>
+                            <ColumnDefinition Width="35*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Spacing="0" HorizontalOptions="FillAndExpand">
+                            <Label Style="{StaticResource CardEntryLabel}" >
+                            <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static resource:ResourceValues.TitleCardExpiryDate}" />
+                                        <Span Text="*" TextColor="Red"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <picker:CustomEntry MaxLength="5" Text="{Binding CradExpiredate}" ReturnType="Next" Placeholder="{x:Static resource:ResourceValues.PlaceholderCardExpiryDate}" Keyboard="Numeric" >
+                                <picker:CustomEntry.Behaviors>
+                                    <behavior:CardExpiryDateMask x:Name="ExpiryDate"/>
+                                </picker:CustomEntry.Behaviors>
+                            </picker:CustomEntry>
+                            <BoxView  HeightRequest="1"   BackgroundColor="{StaticResource AppBlackColor}"/>
+                            <Label Text="{Binding CradExpiredateErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleCradExpiredateError}"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" Grid.Column="1" Orientation="Vertical" Spacing="0">
+                            <Label Style="{StaticResource CardEntryLabel}" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static resource:ResourceValues.TitleCVVNumber}" />
+                                        <Span Text="*" TextColor="Red"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <picker:CustomEntry MaxLength="4" Text="{Binding CVVNumber}" ReturnType="Next"  IsPassword="True" Placeholder="{x:Static resource:ResourceValues.PlaceholderCVVNumber}" Keyboard="Numeric" />
+                            <BoxView HeightRequest="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" />
+                            <Label Text="{Binding CVVNumberErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleCVVNumberError}"/>
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Label  Style="{StaticResource CardEntryLabel}" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand">
+                        <Label.FormattedText>
+                                <FormattedString>
+                                    <Span  Text="{x:Static resource:ResourceValues.TitleCardHolderName}" />
+                                    <Span Text="*" TextColor="Red"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <picker:CustomEntry Text="{Binding CardHolderName}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderCardHolderName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <BoxView  HeightRequest="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        <Label Text="{Binding CardHolderNameErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleCardHolderNameError}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Margin="0,20,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <Button Text="{x:Static resource:ResourceValues.TitleSubmit}" TextColor="{StaticResource AppWhiteColor}" Command="{Binding CommandOnSaveCardDetail}" Margin="0,0,0,10" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <Label Text="{x:Static resource:ResourceValues.TitleSkipOnCardDetail}" IsVisible="{Binding SkipShowHide}" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource AppColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CommandOnSkip}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                    
+            </StackLayout>
+
+
+            <Grid Grid.RowSpan="2" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.RowSpan="2" BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait Grid.RowSpan="2" VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+         
+           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

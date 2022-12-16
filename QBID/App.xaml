@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QBid.App"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="GlobalErrorMessageTheme" TargetType="Label">
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="Margin" Value="8,0,0,0"/>
+            </Style>
+            <!-- Define colors-->
+            <Color x:Key="AppRedColor">#FF0000</Color>
+            <Color x:Key="AppPinkColor">#f06292</Color>
+            <Color x:Key="AppColor">#2CD49C</Color>
+            <Color x:Key="AppBlackColor">#000000</Color>
+            <Color x:Key="AppWhiteColor">#FFFFFF</Color>
+            <Color x:Key="AppGrayColor">#808080</Color>
+            <Color x:Key="AppHyperlinkColor">blue</Color>
+            <Color x:Key="CardViewBackgroundColor">#FAFCFE</Color>
+            <Color x:Key="AppLightGrayColor">#F0F0F0</Color>
+            <Color x:Key="AppLightWhiteColor">#CCCCCCF</Color>
+            <Color x:Key="AppColorLight">#E5FAF4</Color>
+            <Color x:Key="AppBlueColor">#1f2060</Color>
+            <Color x:Key="AppLightSkyColor">#E7F7F5</Color>
+
+            <Style x:Key="RegistrationEntryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource AppColor}"></Setter>
+            </Style>
+            <Style x:Key="CardEntryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource AppColor}"></Setter>
+            </Style>
+            <Style x:Key="AccountHolderEntryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource AppColor}"></Setter>
+            </Style>
+            <Style x:Key="LoginEntryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource AppColor}"></Setter>
+            </Style>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource AppColor}"/>
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
+           
+        </ResourceDictionary>
+       
+    </Application.Resources>
+</Application>

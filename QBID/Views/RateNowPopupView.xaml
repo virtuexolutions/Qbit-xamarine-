@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QBid.Views.RateNowPopupView"
+                 xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:vm="clr-namespace:QBid.ViewModels" xmlns:Loader="clr-namespace:QBid.Views.ContentViews">
+    <pages:PopupPage.BindingContext>
+        <vm:RateNowPopupViewModel x:Name="vm"/>
+    </pages:PopupPage.BindingContext>
+    <Grid Margin="5" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="0" Padding="0" HasShadow="False" VerticalOptions="Center"  >
+            <StackLayout Margin="10,10,10,10" Orientation="Vertical"  Spacing="0">
+                <StackLayout Orientation="Vertical" Margin="0,10,0,15">
+                    <Label Text="{Binding NegotiatorName}"  VerticalOptions="CenterAndExpand" FontAttributes="Bold" TextColor="{x:StaticResource AppBlackColor}" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                </StackLayout>
+                <StackLayout  HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                    <Grid  HorizontalOptions="CenterAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="{Binding FirstStar}" HeightRequest="20" WidthRequest="20" Aspect="AspectFill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnStarImages}" CommandParameter="0"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="{Binding SecondStar}" HeightRequest="20" WidthRequest="20" Aspect="AspectFill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnStarImages}" CommandParameter="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="{Binding ThirdStar}" HeightRequest="20" WidthRequest="20" Aspect="AspectFill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnStarImages}" CommandParameter="2"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image Source="{Binding FourthStar}" HeightRequest="20" WidthRequest="20" Aspect="AspectFill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnStarImages}" CommandParameter="3"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                            <Image  Source="{Binding FiveStar}" HeightRequest="20" WidthRequest="20" Aspect="AspectFill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnStarImages}" CommandParameter="4"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <Frame  Margin="0,20,0,20" HasShadow="False" IsClippedToBounds="True" BorderColor="{x:StaticResource AppBlackColor}" Padding="0">
+                           <StackLayout  x:Name="flexLayoutQuestionList" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindableLayout.ItemsSource="{Binding QuestionList}"  >
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="10">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+                                                <Label FontSize="15" TextColor="{x:StaticResource AppBlackColor}">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Index}" FontAttributes="Bold"/>
+                                                            <Span Text="{Binding RatingQuestions}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" >
+                                                <RadioButton CornerRadius="3" HorizontalOptions="StartAndExpand" CheckedChanged="RadioButton_CheckedChanged" Background="Transparent" IsChecked="{Binding Yes}" Content="Yes" Padding="0"  >
+                                                </RadioButton>
+                                                <RadioButton Margin="0,0,20,0" CornerRadius="3" HorizontalOptions="EndAndExpand" CheckedChanged="RadioButton_CheckedChanged" Background="Transparent" IsChecked="{Binding No}" Content="No" Padding="0"  >
+                                                </RadioButton>
+                                            </StackLayout>
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                </Frame>
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Margin="15,0,0,0" Text="{Binding ErrorMessage}" IsVisible="{Binding IsErrorShow}" TextColor="{x:StaticResource AppRedColor}"/>
+                </StackLayout>
+                <Frame HasShadow="False" Padding="0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                        <Button x:Name="NoBtn" WidthRequest="100" HeightRequest="40" Clicked="CloseBtn_Clicked" TextColor="{StaticResource AppWhiteColor}" Text="{x:Static resource:ResourceValues.CancelButtontext}" BackgroundColor="{StaticResource AppRedColor}"/>
+                        <Button WidthRequest="100" HeightRequest="40" Command="{Binding CommandOnSubmitReview}"  TextColor="{StaticResource AppWhiteColor}"  Text="{x:Static resource:ResourceValues.TitleSubmit}" BackgroundColor="{StaticResource AppColor}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Frame>
+
+        <Grid Grid.Row="0" IsVisible="{Binding IsRateNowLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid  BackgroundColor="Transparent" Opacity="0.8"/>
+            <Loader:CustomLoaderWait  VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsRateNowLoader}"/>
+        </Grid>
+     
+    </Grid>
+</pages:PopupPage>

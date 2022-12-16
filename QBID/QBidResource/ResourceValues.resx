@@ -1,0 +1,1220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AcceptQuotationByNegotiator" xml:space="preserve">
+    <value>Do you want to accept this QBid?</value>
+  </data>
+  <data name="AcceptTermsandConditionsErrorMessage" xml:space="preserve">
+    <value>Please accept terms and conditions.</value>
+  </data>
+  <data name="AccountHolderErrorMessage" xml:space="preserve">
+    <value>Please enter account holder name</value>
+  </data>
+  <data name="AddressErrorMessage" xml:space="preserve">
+    <value>Please enter address.</value>
+  </data>
+  <data name="AddressLine1ErrorMessage" xml:space="preserve">
+    <value>Please enter address line1</value>
+  </data>
+  <data name="AddressLine2ErrorMessage" xml:space="preserve">
+    <value>Please enter address line2</value>
+  </data>
+  <data name="AlertAddCreditCardMessage" xml:space="preserve">
+    <value>Moving forward we will need credit card information to start the process for QBid when the negotiation services rendered complete.</value>
+  </data>
+  <data name="ApiErrorMessage" xml:space="preserve">
+    <value>API ERROR: Something went wrong. Please try again later!</value>
+  </data>
+  <data name="AppExistMessage" xml:space="preserve">
+    <value>Do you want to exit this app?</value>
+  </data>
+  <data name="Are you sure you want to submit the negotiated price?Message" xml:space="preserve">
+    <value>Are you sure you want to submit the negotiated price?</value>
+  </data>
+  <data name="BankAccountErrorMessage" xml:space="preserve">
+    <value>Please enter bank account number</value>
+  </data>
+  <data name="BankDetailSavedMessage" xml:space="preserve">
+    <value>Bank detail saved successfully.</value>
+  </data>
+  <data name="ButtonAccept" xml:space="preserve">
+    <value>Accept QBid</value>
+  </data>
+  <data name="ButtonChangeNegotiator" xml:space="preserve">
+    <value>Change Negotiator</value>
+  </data>
+  <data name="ButtonClicktohireNegotiator" xml:space="preserve">
+    <value>Click to hire a Negotiator</value>
+  </data>
+  <data name="ButtonDecline" xml:space="preserve">
+    <value>Decline</value>
+  </data>
+  <data name="CancelButtontext" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CardCVVErrorMessage" xml:space="preserve">
+    <value>Please enter cvv code.</value>
+  </data>
+  <data name="CardExpireDateErrorMessage" xml:space="preserve">
+    <value>Please enter card expiration date.</value>
+  </data>
+  <data name="CardHolderNameErrorMessage" xml:space="preserve">
+    <value>Please enter cardholder name.</value>
+  </data>
+  <data name="CardNumberErrorMessage" xml:space="preserve">
+    <value>Please enter card number.</value>
+  </data>
+  <data name="CardSavedMessage" xml:space="preserve">
+    <value>Card saved successfully.</value>
+  </data>
+  <data name="CheckEmailErrorMessage" xml:space="preserve">
+    <value>Please enter valid email address.</value>
+  </data>
+  <data name="CityErrorMessage" xml:space="preserve">
+    <value>Please enter city name</value>
+  </data>
+  <data name="ConfirmAddBankAcount" xml:space="preserve">
+    <value>Please add your bank account details first in order to move forward.</value>
+  </data>
+  <data name="ConfirmAddCreditCardMessage" xml:space="preserve">
+    <value>You will need to provide the credit card information to start further process for the QBid.</value>
+  </data>
+  <data name="ConfirmBlockNegotiatorMessage" xml:space="preserve">
+    <value>Would like to use the same negotiator again in future?</value>
+  </data>
+  <data name="ConfirmCardDeleteMessage" xml:space="preserve">
+    <value>Could't delete, you must have a card in your account.</value>
+  </data>
+  <data name="ConfirmChangeNegotiatorMessage" xml:space="preserve">
+    <value>Do you want to change negotiator?</value>
+  </data>
+  <data name="ConfirmDeleteMessage" xml:space="preserve">
+    <value>Are you sure you want to remove this card?</value>
+  </data>
+  <data name="ConfirmHireNegotiatorMessage" xml:space="preserve">
+    <value>Do you want to hire a negotiator for negotiation?</value>
+  </data>
+  <data name="ConfirmPasswordErrorMessage" xml:space="preserve">
+    <value>Please enter confirm password.</value>
+  </data>
+  <data name="ConfirmPasswordNotMatchErrorMessage" xml:space="preserve">
+    <value>Password not match</value>
+  </data>
+  <data name="ConfirmSetDefaultCardMessage" xml:space="preserve">
+    <value>Are you sure you want to set default card?</value>
+  </data>
+  <data name="ConfirmSetSkipBankDetailMessage" xml:space="preserve">
+    <value>Are you sure you want to skip add Bank Detail?</value>
+  </data>
+  <data name="ConfirmSetSkipCardMessage" xml:space="preserve">
+    <value>Are you sure you want to skip add card?</value>
+  </data>
+  <data name="CountryNameErrorMessage" xml:space="preserve">
+    <value>Please enter country code (only 2 char. e.g. US)</value>
+  </data>
+  <data name="DashBoardBankAccountMenu" xml:space="preserve">
+    <value>Bank Account</value>
+  </data>
+  <data name="DashBoardCardPaymentMenu" xml:space="preserve">
+    <value>Card Payment</value>
+  </data>
+  <data name="DashBoardComplaintMenu" xml:space="preserve">
+    <value>Suggestions for QBid</value>
+  </data>
+  <data name="EditProflie" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="DashBoardLogoutMenu" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="DisplayCountryCode" xml:space="preserve">
+    <value>US</value>
+  </data>
+  <data name="DOBerrorMessage" xml:space="preserve">
+    <value>Please select date of birth.</value>
+  </data>
+  <data name="DoYouWantToLeaveThisPage?" xml:space="preserve">
+    <value>Do you want to leave this page?</value>
+  </data>
+  <data name="EmailErrorMessage" xml:space="preserve">
+    <value>Please enter email address.</value>
+  </data>
+  <data name="fff" xml:space="preserve">
+    <value>SUBMIT</value>
+  </data>
+  <data name="FirstNameErrorMessage" xml:space="preserve">
+    <value>Please enter first name.</value>
+  </data>
+  <data name="HoldCommentErrorMessage" xml:space="preserve">
+    <value>Please Write a comment for Hold</value>
+  </data>
+  <data name="LabelAddBankDetailMessage" xml:space="preserve">
+    <value>Please enter bank information to ensure prompt and accurate payment for every successfully completed QBid. &lt;br/&gt; &lt;br/&gt;Attention: Be advised that the 1st QBID worked payout commission may take a 2 to 5 days to be deposited, then their after will be daily</value>
+  </data>
+  <data name="LabelBacktoLogin" xml:space="preserve">
+    <value>Back to login</value>
+  </data>
+  <data name="LastNameErrorMessage" xml:space="preserve">
+    <value>Please enter last name</value>
+  </data>
+  <data name="MaxCardAddMessage" xml:space="preserve">
+    <value>You have already added maximum 2 card.</value>
+  </data>
+  <data name="MobileNumberErrorMessage" xml:space="preserve">
+    <value>Please enter mobile number.</value>
+  </data>
+  <data name="MobileNumberforLIVECALLSErrorMessage" xml:space="preserve">
+    <value>Please enter mobile for live calls.</value>
+  </data>
+  <data name="MobilenumberforTextErrorMessage" xml:space="preserve">
+    <value>Please enter mobile for text.</value>
+  </data>
+  <data name="NegotiatorBlockErrorMessage" xml:space="preserve">
+    <value>Please chose any option for old negotiator.</value>
+  </data>
+  <data name="NegotiatorpriceMessage" xml:space="preserve">
+    <value>Please enter negotiator price</value>
+  </data>
+  <data name="OkButtontext" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="PasswordEntryMessage" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordErrorMessage" xml:space="preserve">
+    <value>Please enter password.</value>
+  </data>
+  <data name="PlaceholderAccountHolderName" xml:space="preserve">
+    <value>Account Holder Name</value>
+  </data>
+  <data name="PlaceholderAddressLine1" xml:space="preserve">
+    <value>Address Line 1</value>
+  </data>
+  <data name="PlaceholderAddressLine2" xml:space="preserve">
+    <value>Address Line 2</value>
+  </data>
+  <data name="PlaceholderBankAccountNo" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="PlaceholderCardExpiryDate" xml:space="preserve">
+    <value>MM/YY</value>
+  </data>
+  <data name="PlaceholderCardHolderName" xml:space="preserve">
+    <value>Cardholder Name</value>
+  </data>
+  <data name="PlaceholderCardNo" xml:space="preserve">
+    <value>XXXX-XXXX-XXXX-XXXX</value>
+  </data>
+  <data name="PlaceholderCityName" xml:space="preserve">
+    <value>City Name</value>
+  </data>
+  <data name="PlaceholderCompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="PlaceholderConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="PlaceholderCountryName" xml:space="preserve">
+    <value>Country Code (e.g. US)</value>
+  </data>
+  <data name="PlaceholderCVVNumber" xml:space="preserve">
+    <value>3 or 4 digits </value>
+  </data>
+  <data name="PlaceholderDOB" xml:space="preserve">
+    <value>DD/MM/YYYY</value>
+  </data>
+  <data name="PlaceholderEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="PlaceholderEmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="PlaceholderEnterFacilityEmailAddress" xml:space="preserve">
+    <value>Enter Current Member/Salespersons Email Address</value>
+  </data>
+  <data name="PlaceholderExp.(in years)" xml:space="preserve">
+    <value>Exp. (in years)</value>
+  </data>
+  <data name="PlaceholderFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="PlaceholderLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="PlaceholderMobileNumber" xml:space="preserve">
+    <value>Mobile Number</value>
+  </data>
+  <data name="PlaceholderNickName" xml:space="preserve">
+    <value>Nick Name</value>
+  </data>
+  <data name="PlaceholderNo" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="PlaceholderPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PlaceHolderQueryAndComplaint" xml:space="preserve">
+    <value>Write suggestions for QBid here</value>
+  </data>
+  <data name="PlaceholderRoutingNo" xml:space="preserve">
+    <value>Routing Number</value>
+  </data>
+  <data name="PlaceholderSSNNo" xml:space="preserve">
+    <value>Last 4 Digit SSN Number</value>
+  </data>
+  <data name="PlaceholderStateName" xml:space="preserve">
+    <value>State Name</value>
+  </data>
+  <data name="PlaceholderUserType" xml:space="preserve">
+    <value>Select User Type</value>
+  </data>
+  <data name="PlaceholderYes" xml:space="preserve">
+    <value>yes</value>
+  </data>
+  <data name="PlaceholderZipCode" xml:space="preserve">
+    <value>Zip Code</value>
+  </data>
+  <data name="PlaceholdPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PleaseEnterYears" xml:space="preserve">
+    <value>Please enter years</value>
+  </data>
+  <data name="PleaseSelectUserType" xml:space="preserve">
+    <value>Please select User Type</value>
+  </data>
+  <data name="QueryAndComplaintErrorMessage" xml:space="preserve">
+    <value>Please write suggestions for QBid.</value>
+  </data>
+  <data name="RoutingNoErrorMessage" xml:space="preserve">
+    <value>Please enter routing number</value>
+  </data>
+  <data name="SelectLanguageMessage" xml:space="preserve">
+    <value>Please select language </value>
+  </data>
+  <data name="SelectReasonErrorMessage" xml:space="preserve">
+    <value>Please enter Select Reason</value>
+  </data>
+  <data name="SelectServiceMessage" xml:space="preserve">
+    <value>Please select service</value>
+  </data>
+  <data name="SelectServicesInYearsErrorMessage" xml:space="preserve">
+    <value>Please enter exp. (In years)</value>
+  </data>
+  <data name="SelectUserTypeErrorMessage" xml:space="preserve">
+    <value>Please select User Type</value>
+  </data>
+  <data name="ServicesMessage" xml:space="preserve">
+    <value>Please enter service </value>
+  </data>
+  <data name="SSLNoErrorMessage" xml:space="preserve">
+    <value>Please enter last 4 digit ssn number.</value>
+  </data>
+  <data name="StateNameErrorMessage" xml:space="preserve">
+    <value>Please select state name</value>
+  </data>
+  <data name="TermsAndConditionErrorMessage" xml:space="preserve">
+    <value>Please accept terms and condition</value>
+  </data>
+  <data name="TitalAccountHolderName" xml:space="preserve">
+    <value>Account Holder Name</value>
+  </data>
+  <data name="TitalDOB" xml:space="preserve">
+    <value>Date of Birth</value>
+  </data>
+  <data name="TitalSSNNo" xml:space="preserve">
+    <value>SSN Number</value>
+  </data>
+  <data name="TitelSelectLanguage" xml:space="preserve">
+    <value>Select Language</value>
+  </data>
+  <data name="Title1Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="TitleAccept" xml:space="preserve">
+    <value>Accept </value>
+  </data>
+  <data name="TitleAcceptRightAndProvision" xml:space="preserve">
+    <value>Policies &amp; Provisions</value>
+  </data>
+  <data name="TitleAddCardShow" xml:space="preserve">
+    <value>Must have credit card on file to proceed.</value>
+  </data>
+  <data name="TitleAddNewCard" xml:space="preserve">
+    <value>Add Card</value>
+  </data>
+  <data name="TitleAddNewQBid" xml:space="preserve">
+    <value>Start a New QBid</value>
+  </data>
+  <data name="TitleAddressLine1" xml:space="preserve">
+    <value>Address Line 1</value>
+  </data>
+  <data name="TitleAddressLine2" xml:space="preserve">
+    <value>Address Line 2</value>
+  </data>
+  <data name="TitleBankAccountList" xml:space="preserve">
+    <value>Bank Account List</value>
+  </data>
+  <data name="TitleBankAcountNo" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="TitleCardDetailPage" xml:space="preserve">
+    <value>Card Detail</value>
+  </data>
+  <data name="TitleCardExpiryDate" xml:space="preserve">
+    <value>Card Expiration Date</value>
+  </data>
+  <data name="TitleCardHolderName" xml:space="preserve">
+    <value>Cardholder Name</value>
+  </data>
+  <data name="TitleCardNo" xml:space="preserve">
+    <value>Card Number</value>
+  </data>
+  <data name="TitleCheckHereToDisplayNickName" xml:space="preserve">
+    <value>Check here to Display Nick Name</value>
+  </data>
+  <data name="TitleCityName" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="TitleCompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="TitleConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="TitleCountryName" xml:space="preserve">
+    <value>Country Code</value>
+  </data>
+  <data name="TitleCVVNumber" xml:space="preserve">
+    <value>CVV Code</value>
+  </data>
+  <data name="TitleDontHaveAnAccount" xml:space="preserve">
+    <value>Don't have an account?</value>
+  </data>
+  <data name="TitleEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="TitleEmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="TitleEnterFacilityEmailAddress" xml:space="preserve">
+    <value>Member/Salesperson Email Address</value>
+  </data>
+  <data name="TitleFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="TitleForgotPassword" xml:space="preserve">
+    <value>Forgot Password?</value>
+  </data>
+  <data name="TitleHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="TitleLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="TitleLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="TitleMobileNumberForLiveCalls" xml:space="preserve">
+    <value>Mobile Number For Live Calls</value>
+  </data>
+  <data name="TitleMobileNumberForText" xml:space="preserve">
+    <value>Mobile Number For Text</value>
+  </data>
+  <data name="TitleNegotiatorBankDetailPage" xml:space="preserve">
+    <value>Bank Account Detail</value>
+  </data>
+  <data name="TitleNickName" xml:space="preserve">
+    <value>Nick Name</value>
+  </data>
+  <data name="TitleNorecordsfound" xml:space="preserve">
+    <value>No records found</value>
+  </data>
+  <data name="TitlePassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="TitlePaymentCardDetail" xml:space="preserve">
+    <value>Payment Card Detail</value>
+  </data>
+  <data name="TitlePleaseSelectAnswer" xml:space="preserve">
+    <value>Please Select Answer</value>
+  </data>
+  <data name="TitlePleaseSelectStar" xml:space="preserve">
+    <value>Please Select Star</value>
+  </data>
+  <data name="TitleProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="TitleQBidDetail" xml:space="preserve">
+    <value>QBid Details</value>
+  </data>
+  <data name="TitleQueryAndComplaint" xml:space="preserve">
+    <value>Suggestions for QBid</value>
+  </data>
+  <data name="TitleRememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="TitleRetired" xml:space="preserve">
+    <value>Retired</value>
+  </data>
+  <data name="TitleRoutingNo" xml:space="preserve">
+    <value>Routing Number</value>
+  </data>
+  <data name="TitleSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TitleSelectLanguages" xml:space="preserve">
+    <value>Select Languages you Know</value>
+  </data>
+  <data name="TitleSelectService" xml:space="preserve">
+    <value>Select Service</value>
+  </data>
+  <data name="TitleSelectServices" xml:space="preserve">
+    <value>Select Services</value>
+  </data>
+  <data name="TitleSelfEmployed" xml:space="preserve">
+    <value>Self Employed</value>
+  </data>
+  <data name="TitleService" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="TitleSignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="TitleSkipOnCardDetail" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="TitleStateName" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="TitleSubmit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="TitleSuggestionListButton" xml:space="preserve">
+    <value>View Previous Suggestions</value>
+  </data>
+  <data name="TitleTermsAndConditions" xml:space="preserve">
+    <value>Terms and Conditions</value>
+  </data>
+  <data name="TitleUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="TitleUserType" xml:space="preserve">
+    <value>User Type</value>
+  </data>
+  <data name="TitleZipCode" xml:space="preserve">
+    <value>Zip Code</value>
+  </data>
+  <data name="User Type" xml:space="preserve">
+    <value>Please select user type</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Please enter username</value>
+  </data>
+  <data name="YearsinthefieldsErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ZipCodeErrorMessage" xml:space="preserve">
+    <value>Plaese enter valid zip code.</value>
+  </data>
+  <data name="DashBoardUpdateProfileMenu" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="ConfirmUpdateProfileMessage" xml:space="preserve">
+    <value>Are you sure you want to update profile?</value>
+  </data>
+  <data name="ConfirmInternetMessage" xml:space="preserve">
+    <value>Please check your internet connection.</value>
+  </data>
+  <data name="ConfirmSubmitNegoPriceMessage" xml:space="preserve">
+    <value>Are you sure you want to submit the Negotiated Price?</value>
+  </data>
+  <data name="ConfirmToApprovePriceMessage" xml:space="preserve">
+    <value>Please contact your Sales representative to confirm the approval of the new price you both agreed to. Thank you QBid</value>
+  </data>
+  <data name="TitlePaymentabel" xml:space="preserve">
+    <value>Payment Detail</value>
+  </data>
+  <data name="TitleQbidMemberLabel" xml:space="preserve">
+    <value>QBid Member</value>
+  </data>
+  <data name="TitleQbidNegoLabel" xml:space="preserve">
+    <value>Negotiator</value>
+  </data>
+  <data name="TitleServiceItemLabel" xml:space="preserve">
+    <value>Your Newly Negotiated Qbid Price</value>
+  </data>
+  <data name="TitleVendorLabel" xml:space="preserve">
+    <value>Vendor/Sales Representatives</value>
+  </data>
+  <data name="VailidNegoPriceMessage" xml:space="preserve">
+    <value>Please enter negotiated price</value>
+  </data>
+  <data name="NoButtontext" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="TitleAlert" xml:space="preserve">
+    <value>Alert!</value>
+  </data>
+  <data name="YesButtontext" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="AcceptRightAndProvisionErrorMessage" xml:space="preserve">
+    <value>Please Accept Rights and Provision</value>
+  </data>
+  <data name="ApprovedDate" xml:space="preserve">
+    <value>Approved Date</value>
+  </data>
+  <data name="CancelNegotiatorPriceMessage" xml:space="preserve">
+    <value>Are you sure you want to cancel QBid?</value>
+  </data>
+  <data name="CancelQbidAlreadySubmitMessage" xml:space="preserve">
+    <value>Can't be cancel negotiator already submit the QBid.</value>
+  </data>
+  <data name="ConfirmApproveOriginalPriceMessage" xml:space="preserve">
+    <value>Are you sure you want to approve the QBid Original Price?</value>
+  </data>
+  <data name="ConfirmApproveQbidMessage" xml:space="preserve">
+    <value>Are you sure you want to approve the QBid?</value>
+  </data>
+  <data name="ConfirmApproveServiceItemMessage" xml:space="preserve">
+    <value>Please approve service Items</value>
+  </data>
+  <data name="ConfirmQbidCancelMessage" xml:space="preserve">
+    <value>QBid has been cancelled</value>
+  </data>
+  <data name="ConfirmVendorQbidSubmitMessage" xml:space="preserve">
+    <value>Member has submitted the QBid</value>
+  </data>
+  <data name="DeclinedDate" xml:space="preserve">
+    <value>Declined Date</value>
+  </data>
+  <data name="NorecordsfoundMessage" xml:space="preserve">
+    <value>No records found</value>
+  </data>
+  <data name="QBidApprovedMessage" xml:space="preserve">
+    <value>QBid Approved</value>
+  </data>
+  <data name="QBidDeclineMessage" xml:space="preserve">
+    <value>QBid Declined</value>
+  </data>
+  <data name="RatingSelectErrorMessage" xml:space="preserve">
+    <value>Please Select Answer</value>
+  </data>
+  <data name="RatingSelectStarErrorMessage" xml:space="preserve">
+    <value>Please Select Star</value>
+  </data>
+  <data name="SubmitNegotiatorPriceMessage" xml:space="preserve">
+    <value>Are you sure you want to submit the negotiated price?</value>
+  </data>
+  <data name="BankAcountNotActiveMessage" xml:space="preserve">
+    <value>Please update your bank acount it is not active.</value>
+  </data>
+  <data name="AddressNotVerifiedMessage" xml:space="preserve">
+    <value>Must up-date bank account details in bank account before QBids can be awarded.
+Please allow 5 to 10 minutes for app to up-date your profile once completed.</value>
+  </data>
+  <data name="ConfirmQbidAcceptMessage" xml:space="preserve">
+    <value>Do you want to accept this QBid?</value>
+  </data>
+  <data name="AccountValidMessage" xml:space="preserve">
+    <value>Please enter valied account number</value>
+  </data>
+  <data name="ConfirmBankValidMessage" xml:space="preserve">
+    <value>Bank account details is not valid.</value>
+  </data>
+  <data name="ConfirmExitMessage" xml:space="preserve">
+    <value>Do you want to exit this page?</value>
+  </data>
+  <data name="DateOfBirthErrorMessage" xml:space="preserve">
+    <value>Date of birth should be more then 18 year.</value>
+  </data>
+  <data name="IPAddressErrorMessage" xml:space="preserve">
+    <value>Unable to get device ip address.</value>
+  </data>
+  <data name="RoutingNoValidErrorMessage" xml:space="preserve">
+    <value>Routing no must be 9 digit</value>
+  </data>
+  <data name="ValidMobileMessage" xml:space="preserve">
+    <value>Please enter valid mobile number</value>
+  </data>
+  <data name="DashBoardAppInfoMenu" xml:space="preserve">
+    <value>How to use the App</value>
+  </data>
+  <data name="CardCVVDigitErrorMessage" xml:space="preserve">
+    <value>CVV must be 3 or 4 digit number.</value>
+  </data>
+  <data name="CardExpireDateErrorValidMessage" xml:space="preserve">
+    <value>Please enter valid expiry date.</value>
+  </data>
+  <data name="CardExpireMonthErrorMessage" xml:space="preserve">
+    <value>Please enter valid expiry month.</value>
+  </data>
+  <data name="CardExpireYearErrorMessage" xml:space="preserve">
+    <value>Please enter valid expiry year.</value>
+  </data>
+  <data name="CardNumberDigitErrorMessage" xml:space="preserve">
+    <value>Please enter 16 digit card number.</value>
+  </data>
+  <data name="ButtonFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="ButtonNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="ButtonPrevious" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ButtonSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="CameraErrorMessage" xml:space="preserve">
+    <value>No Camera Avaialble.</value>
+  </data>
+  <data name="ConfirmDeclineMessage" xml:space="preserve">
+    <value>Are you sure you want to decline the entire QBid?</value>
+  </data>
+  <data name="ConfirmLogOutMessage" xml:space="preserve">
+    <value>Do you want to logout?</value>
+  </data>
+  <data name="ConfirmPicDeleteMessage" xml:space="preserve">
+    <value>Do you want to delete Profile Picture !</value>
+  </data>
+  <data name="ContactToMember" xml:space="preserve">
+    <value>Please contact the member as soon as possible.</value>
+  </data>
+  <data name="ContantBenefitsbecomingQBIDMember" xml:space="preserve">
+    <value>1. Quick &amp; Easy to use.&lt;br/&gt;2. You’re in charge from beginning to end.&lt;br/&gt;3. You’ll have your very own professional negotiator working for you.&lt;br/&gt;4. No memberships fees, just a fraction of the savings you get from our professional negotiators.&lt;br/&gt;5. App user has the power of negotiating live.&lt;br/&gt;6. A couple of clicks, and your very own professional negotiator is hired, helping save and negotiate the best deal possible every time.&lt;br/&gt;7. If we can’t help you, we don’t get paid.&lt;br/&gt;8. YOU SAVE, and WE ALL WIN!</value>
+  </data>
+  <data name="ContantBenefitsbeingQBIDNegotiator" xml:space="preserve">
+    <value>1. Work from anywhere, your schedule&lt;br/&gt;2. You don’t report to anyone, so you don’t have to worry about being laid off.&lt;br/&gt;3. Negotiators make easy money doing what they know best.&lt;br/&gt;4. Make $$$ by helping people save money, negotiating the best deal for our Users.&lt;br/&gt;5. Will get to accept the quotes they want to work on, on their time 7 days a week.&lt;br/&gt;6. Work on as many quotes as you can handle.&lt;br/&gt;7. All you need is a computer or smart phone.&lt;br/&gt;8. You are the Boss!  your only grade is the App User saying, “Giving a 5 Star.” &lt;br/&gt;9. Paid for each QBID you work every day that produces savings for our App users.&lt;br/&gt;10. Supplement your income while you’re still currently employed.</value>
+  </data>
+  <data name="ContantHowQBIDDeliversYouGreatValue" xml:space="preserve">
+    <value>QBID welcomes quotes, and we'll work hard to get you the best price possible using the information you provide. Our bidding specialists are standing by to help you get what you need, when you need it.</value>
+  </data>
+  <data name="ContantWhatisQBID" xml:space="preserve">
+    <value>A “State of the Art” revolutionary app designed to conquer escalating inflationary costs that are depleting discretionary income. &lt;br/&gt;QBID is quick, but effective way of ensuring the best possible outcome of any given project that QBID represents. &lt;br/&gt;We work to get you the best deal possible.</value>
+  </data>
+  <data name="DOBErrorValidateMessage" xml:space="preserve">
+    <value>Year would not be current or bigger then current year</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Please enter password</value>
+  </data>
+  <data name="GalleryErrorMessage" xml:space="preserve">
+    <value>No Gallery Avaialble.</value>
+  </data>
+  <data name="PrefferedContactMessage" xml:space="preserve">
+    <value>Please select one preffered contact</value>
+  </data>
+  <data name="StatusApprovedQBId" xml:space="preserve">
+    <value>QBid Approved</value>
+  </data>
+  <data name="StatusDeclineQBid" xml:space="preserve">
+    <value>Entire QBid Decline</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Password must be at least 6 characters.</value>
+  </data>
+  <data name="TitelBenefitsbecomingQBIDMember" xml:space="preserve">
+    <value>Benefits of becoming a QBID Member</value>
+  </data>
+  <data name="TitelBenefitsbeingQBIDNegotiator" xml:space="preserve">
+    <value>Benefits of being a QBID Negotiator</value>
+  </data>
+  <data name="TitelCamera" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="TitelDelete" xml:space="preserve">
+    <value>Delete!</value>
+  </data>
+  <data name="TitelGallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="TitelHowQBIDDeliversYouGreatValue" xml:space="preserve">
+    <value>How QBID Delivers You Great Value</value>
+  </data>
+  <data name="TitleWhatisQBID" xml:space="preserve">
+    <value>What is QBID</value>
+  </data>
+  <data name="UserTypeErrorMessage" xml:space="preserve">
+    <value>Please select User Type</value>
+  </data>
+  <data name="ValidZipCodeMessage" xml:space="preserve">
+    <value>Please enter vaild zip Code</value>
+  </data>
+  <data name="NickNameErrerMessage" xml:space="preserve">
+    <value>Please enter nick name</value>
+  </data>
+  <data name="ConfirmBankReEnterFieldMessage" xml:space="preserve">
+    <value>Please enter the correct information to verify and activate the bank account.</value>
+  </data>
+  <data name="LabelInvalidPrice" xml:space="preserve">
+    <value>Invalid price</value>
+  </data>
+  <data name="LabelAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="LabelLanguage" xml:space="preserve">
+    <value>Language's</value>
+  </data>
+  <data name="LabelContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="LabelQbidStatus" xml:space="preserve">
+    <value>QBid Status</value>
+  </data>
+  <data name="LabelServices" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="LabelTodaysBonusEarned" xml:space="preserve">
+    <value>YTD Bonus Earned</value>
+  </data>
+  <data name="LabelTodaysCommission" xml:space="preserve">
+    <value>Todays Commission</value>
+  </data>
+  <data name="LabelTotalApproved" xml:space="preserve">
+    <value>Total Approved</value>
+  </data>
+  <data name="LabelTotalDeclined" xml:space="preserve">
+    <value>Total Declined</value>
+  </data>
+  <data name="LabelTotalInProgress" xml:space="preserve">
+    <value>Total In-Progress</value>
+  </data>
+  <data name="LabelTotalQbid" xml:space="preserve">
+    <value>Total Qbid</value>
+  </data>
+  <data name="LabelYTDEarning" xml:space="preserve">
+    <value>YTD Earning</value>
+  </data>
+  <data name="LabelYTDSaving" xml:space="preserve">
+    <value>YTD Saving</value>
+  </data>
+  <data name="LabelAppIcon" xml:space="preserve">
+    <value>AppIcon.png</value>
+  </data>
+  <data name="LabelBackArrow" xml:space="preserve">
+    <value>BackArrow.png</value>
+  </data>
+  <data name="Labelicon_right_arrow" xml:space="preserve">
+    <value>icon_right_arrow.png</value>
+  </data>
+  <data name="LabelPreferredContact" xml:space="preserve">
+    <value>Preferred Contact</value>
+  </data>
+  <data name="LabelResendQBid" xml:space="preserve">
+    <value>Resend QBid</value>
+  </data>
+  <data name="LabelText" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="LabelVendorInfo" xml:space="preserve">
+    <value>Member Info</value>
+  </data>
+  <data name="TextAddNewCard" xml:space="preserve">
+    <value>Add New Card</value>
+  </data>
+  <data name="TextApproveQBid" xml:space="preserve">
+    <value>Approve QBid</value>
+  </data>
+  <data name="TextAppVersion" xml:space="preserve">
+    <value>App Version </value>
+  </data>
+  <data name="TextCancelQBid" xml:space="preserve">
+    <value>Cancel QBid</value>
+  </data>
+  <data name="TextDeclineentireQBid" xml:space="preserve">
+    <value>Decline entire QBid</value>
+  </data>
+  <data name="TextForDiscussion" xml:space="preserve">
+    <value>For Discussion</value>
+  </data>
+  <data name="TextForNegotiation" xml:space="preserve">
+    <value>For Negotiation</value>
+  </data>
+  <data name="TextHomePage" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="TextInvoice" xml:space="preserve">
+    <value>Invoice #</value>
+  </data>
+  <data name="TextName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TextNegotiatiorDetails" xml:space="preserve">
+    <value>NegotiatiorDetails</value>
+  </data>
+  <data name="TextNoSuggestionsyet" xml:space="preserve">
+    <value>No Suggestions yet</value>
+  </data>
+  <data name="TextProfilePhoto" xml:space="preserve">
+    <value>Profile Photo</value>
+  </data>
+  <data name="TextQBIDCharges" xml:space="preserve">
+    <value>QBID Charges</value>
+  </data>
+  <data name="TextRepresentativeName" xml:space="preserve">
+    <value>Representative Name</value>
+  </data>
+  <data name="TextSelectQBidStatus" xml:space="preserve">
+    <value>Select QBid Status</value>
+  </data>
+  <data name="TextServiceName" xml:space="preserve">
+    <value>Service Name</value>
+  </data>
+  <data name="TextSetDefault" xml:space="preserve">
+    <value>Set as Default</value>
+  </data>
+  <data name="TextTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TextTotalEarning" xml:space="preserve">
+    <value>Total Earning</value>
+  </data>
+  <data name="TextTotalSaving" xml:space="preserve">
+    <value>Total Saving</value>
+  </data>
+  <data name="TextTotalSavings" xml:space="preserve">
+    <value>Total Savings</value>
+  </data>
+  <data name="TextTransaction" xml:space="preserve">
+    <value>Transaction #</value>
+  </data>
+  <data name="TextTransactionStatus" xml:space="preserve">
+    <value>Transaction Status</value>
+  </data>
+  <data name="TextWaitingQBIDpatient" xml:space="preserve">
+    <value>Waiting on QBIDs be patient </value>
+  </data>
+  <data name="TextWelcomeQBIDMember" xml:space="preserve">
+    <value>Welcome QBID Member</value>
+  </data>
+  <data name="SourceAppInfo" xml:space="preserve">
+    <value>AppInfo.png</value>
+  </data>
+  <data name="SourceBankAccount" xml:space="preserve">
+    <value>BankAccount.png</value>
+  </data>
+  <data name="Sourcecalling" xml:space="preserve">
+    <value>calling.png</value>
+  </data>
+  <data name="SourceCamera" xml:space="preserve">
+    <value>Camera.png</value>
+  </data>
+  <data name="SourceCameraImage" xml:space="preserve">
+    <value>CameraImage.png</value>
+  </data>
+  <data name="SourcecheckWhite" xml:space="preserve">
+    <value>checkWhite.png</value>
+  </data>
+  <data name="SourceComplaint" xml:space="preserve">
+    <value>Complaint.png</value>
+  </data>
+  <data name="SourceCreditCard" xml:space="preserve">
+    <value>CreditCard.png</value>
+  </data>
+  <data name="SourceDecline" xml:space="preserve">
+    <value>Decline.png</value>
+  </data>
+  <data name="SourceDelete" xml:space="preserve">
+    <value>Delete.png</value>
+  </data>
+  <data name="SourceDownIconBlack" xml:space="preserve">
+    <value>DownIconBlack.png</value>
+  </data>
+  <data name="Sourceeditprofile" xml:space="preserve">
+    <value>editprofile.png</value>
+  </data>
+  <data name="Sourceexpand" xml:space="preserve">
+    <value>expand.png</value>
+  </data>
+  <data name="SourceFilledRatingStar" xml:space="preserve">
+    <value>FilledRatingStar.png</value>
+  </data>
+  <data name="Sourcefilter30" xml:space="preserve">
+    <value>filter30.png</value>
+  </data>
+  <data name="SourceGallery" xml:space="preserve">
+    <value>Gallery.png</value>
+  </data>
+  <data name="SourceGalleryImage" xml:space="preserve">
+    <value>GalleryImage.png</value>
+  </data>
+  <data name="Sourceicon_star" xml:space="preserve">
+    <value>icon_star.png</value>
+  </data>
+  <data name="SourceLogOut" xml:space="preserve">
+    <value>LogOut.png</value>
+  </data>
+  <data name="SourceLogoutIcon" xml:space="preserve">
+    <value>LogoutIcon.png</value>
+  </data>
+  <data name="SourceMenuIcon" xml:space="preserve">
+    <value>MenuIcon.png</value>
+  </data>
+  <data name="SourcePasswordIcon" xml:space="preserve">
+    <value>PasswordIcon.png</value>
+  </data>
+  <data name="Sourcephone_call" xml:space="preserve">
+    <value>phone_call.png</value>
+  </data>
+  <data name="SourceQBid_Logo" xml:space="preserve">
+    <value>QBid_Logo.png</value>
+  </data>
+  <data name="SourceUserIcon" xml:space="preserve">
+    <value>UserIcon.png</value>
+  </data>
+  <data name="SourceWhiteCamera" xml:space="preserve">
+    <value>WhiteCamera.png</value>
+  </data>
+  <data name="TitleQBidListMember" xml:space="preserve">
+    <value>QBid List - Member</value>
+  </data>
+  <data name="TitleQBidListNegotiator" xml:space="preserve">
+    <value>QBid List - Negotiator</value>
+  </data>
+  <data name="LabelPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="TitleForApproveDeclineMessage" xml:space="preserve">
+    <value>This approval or decline does not in any way authorize the service or repairs to proceed. You must contact your sales rep to give final authorization. This just completed the QBid Process. </value>
+  </data>
+  <data name="TitleForSendtoVendorMessage" xml:space="preserve">
+    <value>This step is crucial for your QBids success. Once you send this link to the Member/Sales Representative you must contact them and ensure they fill out the quote sheet. Submit it back in a timely manner. If not the process can not move forward until its filled out and submitted. &lt;br/&gt;Once they have submitted it back you will be notified. Open the QBid app and review it. 
+Just click “Hire a Negotiator” It does the rest.</value>
+  </data>
+  <data name="TitleForSubmitPriceMessage" xml:space="preserve">
+    <value>Review the process with the QBid member, review new QBid pricing. They will need to approve or decline the QBid to complete the process. Approving just means they agreed to the new price. Does not authorize the work to proceed.</value>
+  </data>
+  <data name="TitleTermofUse" xml:space="preserve">
+    <value>Terms of Use</value>
+  </data>
+  <data name="ConfirmSendQuotationMessage" xml:space="preserve">
+    <value>Quotation link has been sent to Member/Salesperson Email address.</value>
+  </data>
+  <data name="LabelIAgreeTo" xml:space="preserve">
+    <value>I agree to </value>
+  </data>
+  <data name="ButtonDeleteProfile" xml:space="preserve">
+    <value>Delete My Account</value>
+  </data>
+  <data name="ConfirmDeleteAccountMessage" xml:space="preserve">
+    <value>You might have active QBid in your account. Are you sure you want to delete your account?</value>
+  </data>
+  <data name="QBidUnFinishedMessage" xml:space="preserve">
+    <value>QBid Unfinished</value>
+  </data>
+  <data name="UnFinishedDate" xml:space="preserve">
+    <value>Unfinished Date</value>
+  </data>
+  <data name="LabelProfilescreen" xml:space="preserve">
+    <value>Profile - </value>
+  </data>
+  <data name="TextYear" xml:space="preserve">
+    <value>Year:</value>
+  </data>
+  <data name="StripekeyErrorMessage" xml:space="preserve">
+    <value>Something went wrong. Please login again!.</value>
+  </data>
+  <data name="AddZeroAccountValidMessage" xml:space="preserve">
+    <value>Bank Account must have at least 12 Numbers in it, also if your account only has 10, then please add 2 Zeros in front of the account number.  Thank you QBID.</value>
+  </data>
+  <data name="TitleVerifyDocument" xml:space="preserve">
+    <value>Upload Verification Document</value>
+  </data>
+  <data name="DocumentErrorMessage" xml:space="preserve">
+    <value>Document Path not found.</value>
+  </data>
+  <data name="LabelCall" xml:space="preserve">
+    <value>Call</value>
+  </data>
+  <data name="LabelSms" xml:space="preserve">
+    <value>Sms</value>
+  </data>
+  <data name="PlaceHolderSSN9Digit" xml:space="preserve">
+    <value>9 Digit SSN Number/Id_Number</value>
+  </data>
+  <data name="SourceCallingBlack" xml:space="preserve">
+    <value>CallingBlack.png</value>
+  </data>
+  <data name="SourceSmsBlack" xml:space="preserve">
+    <value>SmsBlack.png</value>
+  </data>
+  <data name="TitleQuickAppTour" xml:space="preserve">
+    <value>Quick App Tour</value>
+  </data>
+  <data name="SourceWarningInfo" xml:space="preserve">
+    <value>WarningIcon.png</value>
+  </data>
+  <data name="ApproveMinimumChargeMessage" xml:space="preserve">
+    <value>Based on your current total saving user charge amount is less than $0.50 cents therefore amount can't be transfered to negotiator account as per Stripe guidelines</value>
+  </data>
+  <data name="SSNNo9DigitErrorMessage" xml:space="preserve">
+    <value>Please enter 9 digit ssn number/id_number.</value>
+  </data>
+  <data name="TextNothingToShow" xml:space="preserve">
+    <value>Nothing to show</value>
+  </data>
+  <data name="TitalSSN9Digit" xml:space="preserve">
+    <value>SSN Number/Id_Number</value>
+  </data>
+  <data name="UpdateCallNoMessage" xml:space="preserve">
+    <value>Please update contact number for call in your profile</value>
+  </data>
+  <data name="UpdateTextNoMessage" xml:space="preserve">
+    <value>Please update contact number for Text in your profile</value>
+  </data>
+  <data name="UploadDocBackFace" xml:space="preserve">
+    <value>Please upload back face of document</value>
+  </data>
+  <data name="UploadDocFrontFace" xml:space="preserve">
+    <value>Please upload front face of document</value>
+  </data>
+  <data name="UploadDocMessage" xml:space="preserve">
+    <value>Document upload successfully</value>
+  </data>
+  <data name="ResendQbidMessage" xml:space="preserve">
+    <value>Are you sure you want to resend QBid?</value>
+  </data>
+  <data name="ResendQuotationConfirmMessagw" xml:space="preserve">
+    <value>Quotation link has been sent to new Member / reperesntative email address</value>
+  </data>
+  <data name="ResendValidateErrorMessage" xml:space="preserve">
+    <value>Please enter valid Member/ representative email address</value>
+  </data>
+  <data name="TitleNewAppVersion" xml:space="preserve">
+    <value>New Version</value>
+  </data>
+  <data name="UpdateAppVersionMessage" xml:space="preserve">
+    <value>There is a new version of this app available. Please update now?</value>
+  </data>
+  <data name="FilterStatusErrorMessage" xml:space="preserve">
+    <value>Please select a status</value>
+  </data>
+  <data name="AttachmentNotFound" xml:space="preserve">
+    <value>Attachment not found!</value>
+  </data>
+  <data name="DownloadSuccessfully" xml:space="preserve">
+    <value>Download Successfully</value>
+  </data>
+</root>

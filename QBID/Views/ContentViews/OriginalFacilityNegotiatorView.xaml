@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:picker="clr-namespace:QBid.Controls" xmlns:contentviews="clr-namespace:QBid.Views.ContentViews" x:DataType="contentviews:OriginalFacilityNegotiatorView"
+             x:Class="QBid.Views.ContentViews.OriginalFacilityNegotiatorView">
+    <!--======for negotiator service item design=====-->
+  <ContentView.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label x:Name="UserName"   TextColor="{StaticResource AppGrayColor}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="Small"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#E4FDF5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label x:Name="Original_Price"  TextColor="{StaticResource AppGrayColor}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="Small"/>
+                        <Label x:Name="ServiceIndex" IsVisible="false" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                    </StackLayout>
+                    <StackLayout x:Name="OEMHeader" Grid.Column="1">
+                        <Label x:Name="OEM" TextColor="{StaticResource AppGrayColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid >
+                            <!--<Entry x:Name="NPEntry" HorizontalTextAlignment="End" VerticalOptions="CenterAndExpand" TextChanged="NPEntry_TextChanged" FontSize="12" Keyboard="Numeric" />-->
+                            <picker:CustomEntry x:Name="NPEntry" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextChanged="NPEntry_TextChanged" FontSize="Small" Keyboard="Numeric"/>
+                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource AppBlackColor}" VerticalOptions="End" HorizontalOptions="FillAndExpand"></BoxView>
+                            <Label x:Name="NPLable" HorizontalTextAlignment="Center" TextColor="{StaticResource AppGrayColor}" FontSize="Small"/>
+                        </Grid>
+                        <Label x:Name="NPEntryError" IsVisible="false" FontSize="Small" TextColor="{StaticResource AppRedColor}">
+                        </Label>
+                    </StackLayout>
+                    <StackLayout x:Name="IsAcceptedByMemberHeader" Grid.Column="3">
+                        <!--<Label x:Name="IsAcceptedByMember" TextColor="{StaticResource AppColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Small"/>-->
+                        <Label x:Name="IsAcceptedByMember"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             xmlns:control="clr-namespace:QBid.Controls" xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             x:Class="QBid.Views.QuotationFormPage" Title="Quotation Form">
+    <ContentPage.BindingContext>
+        <vm:QuotationFormPageViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Padding="3,0">
+            <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid>
+                <Grid RowDefinitions="Auto,Auto" Margin="5,3">
+                    <StackLayout Grid.Row="0">
+                        <StackLayout Orientation="Vertical" Margin="0,5,0,0" Padding="0" HorizontalOptions="FillAndExpand">
+                            <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Sale/Representative Name "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" HasShadow="False"  Margin="0" BackgroundColor="Transparent" BorderColor="LightGray">
+                                    <control:BorderlessEntry TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Text="{Binding SaleRepresentativeName}" Placeholder="Enter Sale/Representative Name"/>
+                            </Frame>
+                                <Label Text="{Binding ErrorTextRepresentativeName}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleSaleRepresentavtiveMsgErr}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Enter Company/Vender Contact "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                <control:CustomEntry Text="{Binding MobileNumber}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" MaxLength="14" Placeholder="Enter Contact" Keyboard="Telephone" PlaceholderColor="{StaticResource AppGrayColor}" TextColor="{StaticResource AppBlackColor}">
+                                    <control:CustomEntry.Behaviors>
+                                        <control:PhoneNumberFormatterRenderer/>
+                                    </control:CustomEntry.Behaviors>
+                                    <control:CustomEntry.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness" Android="0" iOS="0" />
+                                    </control:CustomEntry.Margin>
+                                </control:CustomEntry>
+                            </Frame>
+                                <Label Text="{Binding MobileNumberforErrorMessage}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsMobileNumberforError}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Enter Company/Vendor Email "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                    <control:BorderlessEntry Text="{Binding Email}" TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Placeholder="Enter Company/Vendor Email"/>
+                            </Frame>
+                                <Label Text="{Binding EmailErrorMessage}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleEmailError}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Enter Company/Vendor Name "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                    <control:BorderlessEntry TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Text="{Binding EnterCompanyVendorName}" Placeholder="Enter Company/Vendor Name"/>
+                            </Frame>
+                                <Label Text="{Binding ErrorTextEnterCompanyVendorName}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleEnterCompanyVendorNameMsgErr}"/>
+
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Enter Vendor Zip Code "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" Margin="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                    <control:BorderlessEntry Text="{Binding ZipCode}" MaxLength="5" Keyboard="Numeric" TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Placeholder="Enter Company/Vendor Zip Code"/>
+                            </Frame>
+                                <Label Text="{Binding ZipCodeErrorMessage}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsZipCodeError}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="4" Margin="0,0,0,6" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Work/Repair Order # "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" Margin="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                    <control:BorderlessEntry TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Text="{Binding WorkRepairOrder}" Placeholder="Work/Repair Order #"/>
+                            </Frame>
+                                <Label Text="{Binding ErrorTextWorkRepairOrder}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleWorkRepairOrderMsgErr}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="4" Margin="0,0,0,6" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Vendor Street Address "/>
+                                        <!--<Span Text="*" TextColor="Red"/>-->
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" Margin="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                    <control:BorderlessEntry TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Text="{Binding VendorStreetAddress}" Placeholder="Vendor Street Address"/>
+                            </Frame>
+                                <Label Text="{Binding ErrorTextVendorStreetAddress}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleVendorStreetAddressMsgErr}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="4" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="City "/>
+                                        <!--<Span Text="*" TextColor="Red"/>-->
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" Margin="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                    <control:BorderlessEntry TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Text="{Binding City}" Placeholder="City Name"/>
+                            </Frame>
+                                <Label Text="{Binding ErrorTextCity}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleCityMsgErr}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Margin="0,0,0,6" Padding="0">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="State "/>
+                                        <!--<Span Text="*" TextColor="Red"/>-->
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" HasShadow="False" Margin="0" BackgroundColor="Transparent" BorderColor="LightGray">
+                                <Grid>
+                                        <Picker x:Name="Statepicker" Title="Select State" TextColor="{StaticResource AppBlackColor}" ItemsSource="{Binding ListOfState}" ItemDisplayBinding="{Binding name}" SelectedItem="{Binding StateValue}"/>
+                                    <Image InputTransparent="True" Source="DownIconBlack" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" WidthRequest="15" HeightRequest="15"/>
+                                    
+                                </Grid>
+                               
+                            </Frame>
+                                <Label Text="{Binding StateNameErrorMessage}" TextColor="{StaticResource AppRedColor}" IsVisible="{Binding IsVisibleStateNameError}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Spacing="4" Margin="0,0,0,6" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label  FontSize="16" TextColor="{StaticResource AppBlackColor}" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Select Service Type "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="40" Padding="0" HasShadow="False" Margin="0" BackgroundColor="Transparent" BorderColor="LightGray">
+                                <Grid >
+                                        <Picker x:Name="picker" Title="Select Service Type" TextColor="{StaticResource AppBlackColor}" ItemsSource="{Binding ServiceTypeList}" ItemDisplayBinding="{Binding ServiceName}" SelectedItem="{Binding SelectedServiceType}" SelectedIndexChanged="picker_SelectedIndexChanged"/>
+                                    <Image InputTransparent="True" Source="DownIconBlack" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" WidthRequest="15" HeightRequest="15"/>
+                                </Grid>
+
+                            </Frame>
+                                <Label Text="{Binding SelectServiceErrorMessage}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleSelectServiceError}"/>
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding IsVinStackVisible}" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" Spacing="4" Margin="0,0,0,6" Padding="0">
+                                    <Label FontSize="16" TextColor="{StaticResource AppBlackColor}" Text="#VIN"/>
+                                <Frame HeightRequest="40" Padding="0" Margin="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                        <control:BorderlessEntry TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Placeholder="#VIN" Text="{Binding VIN}" MaxLength="17" />
+                                </Frame>
+                                    <Label Text="{Binding VINError}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleVINError}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Spacing="4" Margin="0,0,0,6" Padding="0">
+                                    <Label FontSize="16" TextColor="{StaticResource AppBlackColor}" Text="Miles/KM or Engine Hours"/>
+                                <Frame HeightRequest="40" Padding="0" Margin="0" HasShadow="False" BackgroundColor="Transparent" BorderColor="LightGray">
+                                        <control:BorderlessEntry TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Placeholder="Enter Miles/KM or Engine Hours" Text="{Binding MilesKMOrEngineyHours}" MaxLength="7" />
+                                </Frame>
+                                    <Label Text="{Binding MilesKMOrEngineyHoursError}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleMilesKMOrEngineyHours}"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout>
+                            <Frame HeightRequest="70" HasShadow="False" Padding="0" Margin="0" BackgroundColor="#8A8989" BorderColor="#8A8989" HorizontalOptions="FillAndExpand">
+                                <StackLayout Margin="5">
+                                    <Label FontSize="14" TextColor="White" Text="Add repair or service item needed below."/>
+                                    <Label FontSize="14" TextColor="White" Text="**All Prices are Subject to Taxes &amp; Fees as Applicable**"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Repair or Service Item Needed. "/>
+                                            <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Frame HeightRequest="90" HasShadow="False" Padding="0" Margin="0" BackgroundColor="Transparent" BorderColor="LightGray">
+                                <control:BorderlessEditor FontSize="Small" Placeholder="Please briefly descibe the Quote you wish to be &#10; Negotiated. The more the Detail the Better" Text="{Binding RepairOrServiceItemsNeeded}"/>
+                            </Frame>
+                                <Label Text="{Binding ErrorTextRepairOrServiceItemsNeeded}" TextColor="{StaticResource AppRedColor}" FontSize="12" IsVisible="{Binding IsVisibleRepairOrServiceItemsNeededMsgErr}"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Vertical" Spacing="4" Margin="0,0,0,6" Padding="0">
+                                        <Label FontSize="16" TextColor="{StaticResource AppBlackColor}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Total Quote/Job Price $ "/>
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Frame HeightRequest="40" HasShadow="False" Padding="0" Margin="0" BackgroundColor="Transparent" BorderColor="LightGray" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Label Text="  $" VerticalTextAlignment="Center" HorizontalOptions="Start" TextColor="{StaticResource AppBlackColor}"/>
+                                        <control:BorderlessEntry HorizontalOptions="FillAndExpand" Keyboard="Numeric" Text="{Binding Price, StringFormat='{0:C2}'}" TextColor="{StaticResource AppBlackColor}" Margin="4,0,0,0" Placeholder="Price"/>
+                                            </StackLayout>
+                                    </Frame>
+                                    <Label Text="{Binding PriceError}" TextColor="{StaticResource AppRedColor}" FontSize="12"  IsVisible="{Binding IsVisiblePriceError}"/>
+                                </StackLayout>
+                                
+                                
+                            </Grid>
+                        </StackLayout>
+                        
+                    </StackLayout>
+                    <Grid Grid.Row="1" Margin="0,15,0,10">                        
+                        <Frame Padding="5" HorizontalOptions="EndAndExpand" HasShadow="False" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppColor}" HeightRequest="30" WidthRequest="80">
+                            <Label Text="Submit" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SubmitCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                    
+                    
+                    
+                  
+                </Grid>                                                 
+            </Grid>
+            </ScrollView>
+            <Grid Grid.Row="0" IsVisible="{Binding SubmitPopUpVisible, Mode=TwoWay}" BackgroundColor="Gray" Opacity="0.7"></Grid>
+            <Grid Grid.Row="0" RowDefinitions="50, Auto"  IsVisible="{Binding SubmitPopUpVisible, Mode=TwoWay}" BackgroundColor="White"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="8,16" HeightRequest="150" >                             
+                <Label Grid.Row="0" TextColor="Black" Text="Quotation form submit successfully." FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="8" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Margin="8,16">
+                    <Button Text="CLICK TO HIRE A NEGOTIATOR"  HeightRequest="40" Padding="10" CommandParameter="{Binding .}" Command="{Binding HireNegotiatorCommand}" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppBlueColor}" HorizontalOptions="CenterAndExpand" />
+                    <Button Text="OK" WidthRequest="80" HeightRequest="40" Padding="10" CommandParameter="{Binding .}" TextColor="{StaticResource AppWhiteColor}" Command="{Binding OkCommand}" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="CenterAndExpand" />
+                </StackLayout>                               
+            </Grid>
+            <Grid Grid.Row="0" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait Grid.Row="0" VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage> 

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xamarin.forms/5.0.0.2125/buildTransitive/Xamarin.Forms.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.forms/5.0.0.2125/buildTransitive/Xamarin.Forms.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.communitytoolkit/1.2.0/build/Xamarin.CommunityToolkit.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.communitytoolkit/1.2.0/build/Xamarin.CommunityToolkit.targets')" />
+    <Import Project="$(NuGetPackageRoot)netstandard.library/2.0.3/build/netstandard2.0/NETStandard.Library.targets" Condition="Exists('$(NuGetPackageRoot)netstandard.library/2.0.3/build/netstandard2.0/NETStandard.Library.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.windows.sdk.contracts/10.0.18362.2005/build/Microsoft.Windows.SDK.Contracts.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.sdk.contracts/10.0.18362.2005/build/Microsoft.Windows.SDK.Contracts.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.netframework.analyzers/3.3.2/build/Microsoft.NetFramework.Analyzers.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.netframework.analyzers/3.3.2/build/Microsoft.NetFramework.Analyzers.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.netcore.analyzers/3.3.2/build/Microsoft.NetCore.Analyzers.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.netcore.analyzers/3.3.2/build/Microsoft.NetCore.Analyzers.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codequality.analyzers/3.3.2/build/Microsoft.CodeQuality.Analyzers.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codequality.analyzers/3.3.2/build/Microsoft.CodeQuality.Analyzers.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.versioncheckanalyzer/3.3.2/build/Microsoft.CodeAnalysis.VersionCheckAnalyzer.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.versioncheckanalyzer/3.3.2/build/Microsoft.CodeAnalysis.VersionCheckAnalyzer.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.fxcopanalyzers/3.3.2/build/Microsoft.CodeAnalysis.FxCopAnalyzers.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.fxcopanalyzers/3.3.2/build/Microsoft.CodeAnalysis.FxCopAnalyzers.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.analyzers/3.3.3/build/Microsoft.CodeAnalysis.Analyzers.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.analyzers/3.3.3/build/Microsoft.CodeAnalysis.Analyzers.targets')" />
+  </ImportGroup>
+</Project>

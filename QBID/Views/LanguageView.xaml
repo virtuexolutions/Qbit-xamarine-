@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             xmlns:Res="clr-namespace:QBid.QBidResource" xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             x:Class="QBid.Views.LanguageView" NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true">
+    <ContentPage.BindingContext>
+        <vm:LanguageViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{x:Static Res:ResourceValues.LabelBackArrow}" Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommandOnBackForService}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="{x:Static Res:ResourceValues.TitelSelectLanguage}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Large"/>
+            </Grid>
+            <StackLayout Grid.Row="1" Spacing="0" Orientation="Vertical" Margin="10">
+                <ScrollView>
+                    <FlexLayout BindableLayout.ItemsSource="{Binding LanguageList}" Direction="Column" AlignItems="Stretch" VerticalOptions="Start"  HorizontalOptions="FillAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0" BackgroundColor="{StaticResource AppWhiteColor}" HasShadow="False" Margin="8" CornerRadius="2">
+                                    <StackLayout BackgroundColor="{StaticResource CardViewBackgroundColor}">
+                                        <StackLayout Orientation="Horizontal" Margin="10" VerticalOptions="CenterAndExpand">
+                                            <CheckBox Color="{StaticResource AppColor}" IsChecked="{Binding IsCheckedLang}" BackgroundColor="{StaticResource AppWhiteColor}"/>
+                                            <Label Text="{Binding Name}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                   
+                </ScrollView>
+                <StackLayout Orientation="Vertical" Margin="0,20,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                    <Button Text="Save" FontSize="20" TextColor="{StaticResource AppWhiteColor}"  Command="{Binding CommandOnSaveLanguage}" Margin="0,0,0,10" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" CommandParameter="{Binding .}"/>
+                </StackLayout>
+            </StackLayout>
+            <Grid Grid.RowSpan="2" IsVisible="{Binding IsLoader}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid  BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait  IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+        
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

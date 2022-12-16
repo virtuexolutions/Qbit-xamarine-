@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "dgSpecHash": "le+hos+MaYBEhRQoMtrHoW+jqCboFIIeBDK25EEJIrTUF57A3LL8cQepu71icBpEebfH4YYfG1uPR9PCPsi39g==",
+  "success": true,
+  "projectFilePath": "/Users/hassan/Desktop/Mobile/QbidNew/QBid/QBid.iOS/QBid.iOS.csproj",
+  "expectedPackageFiles": [
+    "/Users/hassan/.nuget/packages/microsoft.appcenter/4.4.0/microsoft.appcenter.4.4.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/microsoft.appcenter.analytics/4.4.0/microsoft.appcenter.analytics.4.4.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/microsoft.appcenter.crashes/4.4.0/microsoft.appcenter.crashes.4.4.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.0/microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3/microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/restsharp/106.12.0/restsharp.106.12.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/rg.plugins.popup/2.0.0.14/rg.plugins.popup.2.0.0.14.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/stripe.net/37.35.0/stripe.net.37.35.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/system.componentmodel/4.3.0/system.componentmodel.4.3.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/system.configuration.configurationmanager/4.5.0/system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/system.security.accesscontrol/4.5.0/system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/system.security.permissions/4.5.0/system.security.permissions.4.5.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/system.security.principal.windows/4.5.0/system.security.principal.windows.4.5.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/system.threading.tasks.extensions/4.5.2/system.threading.tasks.extensions.4.5.2.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/webp.touch/1.0.8/webp.touch.1.0.8.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xam.plugin.latestversion/2.1.0/xam.plugin.latestversion.2.1.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xam.plugin.media/5.0.1/xam.plugin.media.5.0.1.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.build.download/0.10.0/xamarin.build.download.0.10.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.communitytoolkit/1.2.0/xamarin.communitytoolkit.1.2.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.essentials/1.6.1/xamarin.essentials.1.6.1.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.ffimageloading/2.4.11.982/xamarin.ffimageloading.2.4.11.982.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.ffimageloading.forms/2.4.11.982/xamarin.ffimageloading.forms.2.4.11.982.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.ffimageloading.transformations/2.4.11.982/xamarin.ffimageloading.transformations.2.4.11.982.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.firebase.ios.cloudmessaging/4.7.1/xamarin.firebase.ios.cloudmessaging.4.7.1.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.firebase.ios.core/6.10.4/xamarin.firebase.ios.core.6.10.4.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.firebase.ios.installations/1.7.0/xamarin.firebase.ios.installations.1.7.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.firebase.ios.instanceid/4.8.0/xamarin.firebase.ios.instanceid.4.8.0.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.forms/5.0.0.2012/xamarin.forms.5.0.0.2012.nupkg.sha512",
+    "/Users/hassan/.nuget/packages/xamarin.forms.pancakeview/2.3.0.759/xamarin.forms.pancakeview.2.3.0.759.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Xamarin.Forms from 5.0.0.2125 to 5.0.0.2012. Reference the package directly from the project to select a different version. \n QBid.iOS -> QBid -> Xamarin.Forms (>= 5.0.0.2125) \n QBid.iOS -> Xamarin.Forms (>= 5.0.0.2012)",
+      "libraryId": "Xamarin.Forms",
+      "targetGraphs": [
+        "Xamarin.iOS,Version=v1.0",
+        "Xamarin.iOS,Version=v1.0/win",
+        "Xamarin.iOS,Version=v1.0/win-x64",
+        "Xamarin.iOS,Version=v1.0/win-x86"
+      ]
+    }
+  ]
+}

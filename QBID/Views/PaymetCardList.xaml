@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             x:Class="QBid.Views.PaymetCardList"
+              Title="Payment Card Detail"
+             xmlns:partial="clr-namespace:QBid.Views.ContentViews"
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.BindingContext>
+        <vm:PaymentCardListViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Image IsVisible="{Binding IsArrowShowHide}" Grid.Column="0" Source="{x:Static resource:ResourceValues.LabelBackArrow}"  Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CommandOnBackForService}"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="{x:Static resource:ResourceValues.TitlePaymentCardDetail}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Large"/>
+        </Grid>
+        <Grid Grid.Row="1" BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Frame Grid.Row="0" Padding="0" HorizontalOptions="EndAndExpand" CornerRadius="5" Margin="0,10,10,0">
+                <StackLayout Orientation="Horizontal" Spacing="-10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Image Source="A" Aspect="AspectFit" HeightRequest="20" HorizontalOptions="CenterAndExpand" Margin="5,0,0,0"/>
+                    <Label Text="{x:Static resource:ResourceValues.TextAddNewCard}"  Margin="15,5" FontSize="Small" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddNewCardCommand}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <ListView x:Name="CardList" Grid.Row="1" SeparatorVisibility="None" ItemsSource="{Binding CardItemList}"   SelectionMode="None" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                           
+                            <Frame HasShadow="False" Margin="10" BorderColor="{x:StaticResource AppColor}" CornerRadius="5" Padding="5"  >
+                                <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                  
+                                    <StackLayout Grid.Column="1">
+                                        <Label Text="{Binding name}" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Label  Text="{Binding last4}" FontSize="18" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label  Text="Expires " TextColor="Black" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                                            <Label  Text="{Binding CardExpiry}" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Image Grid.Column="2" Source="{x:Static resource:ResourceValues.SourceDelete}" HeightRequest="25" WidthRequest="25" HorizontalOptions="End">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DeleteCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Frame HorizontalOptions="EndAndExpand" Grid.Row="1" Grid.ColumnSpan="3" Padding="0"  CornerRadius="5" Margin="0,2,2,2" IsVisible="{Binding IsSelected}">
+                                        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Label  Text="{x:Static resource:ResourceValues.TextSetDefault}" TextColor="{StaticResource AppBlackColor}"  Margin="5,5" FontSize="Small"  FontAttributes="Bold" />
+                                        </StackLayout>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SetCardDefaultCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                    <Label HorizontalOptions="EndAndExpand" Grid.Row="1" Grid.ColumnSpan="3" IsVisible="{Binding IsDefault}" Text="Default" TextColor="{StaticResource AppColor}" VerticalOptions="StartAndExpand"/>
+                                </Grid>
+                               
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Grid.Row="1"   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0,-100,0,0" IsVisible="{Binding IsWelcomeShow}">
+                <Image Source="{x:Static resource:ResourceValues.LabelAppIcon}"   HeightRequest="160" WidthRequest="160"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                <Label FontSize="20" Margin="0,-50,0,0" FontAttributes="Bold" Text="No card added yet" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" />
+            </StackLayout>
+           
+        </Grid>
+       
+        <Grid Grid.RowSpan="2" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.RowSpan="2" BackgroundColor="Transparent" Opacity="0.8"/>
+           
+            <partial:CustomLoaderWait IsVisibleAndIsRunning="{Binding IsLoader}" Grid.RowSpan="2"></partial:CustomLoaderWait>
+        </Grid>
+     
+        
+    </Grid>
+</ContentPage>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             x:Class="QBid.Views.OnboardingPage" NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true">
+    <ContentPage.BindingContext>
+        <vm:OnboardingViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+            <Grid VerticalOptions="FillAndExpand" BackgroundColor="Transparent" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{x:Static resource:ResourceValues.SourceQBid_Logo}"  Grid.Row="0" Grid.ColumnSpan="3" Opacity="0.3" HeightRequest="{Binding HeightRequestImage, Mode=TwoWay}"/>
+
+                <CarouselView x:Name="onBoardingCarousel" IndicatorView="IndicatorView"
+                          Grid.Row="0" Grid.ColumnSpan="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                          ItemsSource="{Binding Items}" 
+                          Position="{Binding Position}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate >
+                            <ContentView>
+                                <ScrollView>
+                                    <StackLayout Spacing="0" Orientation="Vertical" VerticalOptions="StartAndExpand" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="20" Padding="10">
+                                       
+                                        <Label Text="{Binding Title}" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" FontSize="Large" Margin="0,20,0,20" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding Content}"  TextType="Html" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" TextTransform="Default" TextColor="{StaticResource AppBlackColor}" FontSize="Body" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                                    </StackLayout>
+                                </ScrollView>
+                            </ContentView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <Frame  Grid.Row="0"  Grid.Column="2" HasShadow="False" IsVisible="{Binding IsSkipBtnVisible}" Margin="0,10,0,0" WidthRequest="100" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Padding="1" BackgroundColor="{Binding SkipFrameBgColor}">
+                    <Label Text="{Binding SkipButtonText}" Margin="10" TextColor="{StaticResource AppWhiteColor}" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,-1,-1"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SkipCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+               
+            </Grid>
+            <IndicatorView HeightRequest="20" x:Name="IndicatorView" Margin="0">
+            </IndicatorView>
+            <Grid BackgroundColor="Transparent" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Row="0" Grid.Column="0" HasShadow="False" WidthRequest="100" IsVisible="{Binding IsPreviousBtnVisible}" HorizontalOptions="StartAndExpand" BackgroundColor="{StaticResource AppColor}" HeightRequest="30" Padding="0" Margin="0">
+                    <Label Text="{Binding PreviousButtonText}" Margin="10" FontAttributes="Bold" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PreviousCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame Grid.Row="0" Grid.Column="1" HasShadow="False" WidthRequest="100" HorizontalOptions="EndAndExpand" BackgroundColor="{StaticResource AppColor}" Padding="1" Margin="0">
+                    <Label Text="{Binding NextButtonText}" Margin="10" FontAttributes="Bold" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NextCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+ 
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:QBid.ViewModels" NavigationPage.HasNavigationBar="False"
+             x:Class="QBid.Views.NegotiatiorDetails">
+    <ContentPage.BindingContext>
+        <vm:NegotiatiorDetailsViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{x:Static resource:ResourceValues.LabelBackArrow}"  Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommandOnBackForService}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="{x:Static resource:ResourceValues.TextNegotiatiorDetails}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Large"/>
+
+            </Grid>
+            <StackLayout Grid.Row="1">
+                <Label Text="{x:Static resource:ResourceValues.TextNegotiatiorDetails}" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

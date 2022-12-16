@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:entry="clr-namespace:QBid.Controls"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             ios:Page.UseSafeArea="true"
+             x:Class="QBid.Views.SendNewQuotationRequest" Title="{x:Static resource:ResourceValues.TitleAddNewQBid}">
+    <!--<NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="{x:Static resource:ResourceValues.TitleAddNewQBid}" TextColor="{StaticResource AppWhiteColor}" 
+                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="0,0,75,0" FontSize="Large"/>
+        </StackLayout>
+    </NavigationPage.TitleView>-->
+    <ContentPage.BindingContext>
+        <vm:SendNewQuotationRequesViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto">  
+            
+<!--===============previous send email to vendor formate=========================-->
+            
+            <!--<StackLayout Grid.Row="0">
+                <Frame IsVisible="{Binding IsSendQbidViewVisible}" HasShadow="False" BorderColor="{StaticResource AppColor}" Margin="10" CornerRadius="5" Padding="8">
+                    <StackLayout>                        
+                        <Label Text="{x:Static resource:ResourceValues.TitleEnterFacilityEmailAddress}"  LineBreakMode="WordWrap" Style="{StaticResource RegistrationEntryLabel}" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand"/>
+                        <entry:CustomEntry Text="{Binding EmailAddress}" FontSize="14" ReturnType="Done" Keyboard="Text"  Placeholder="{x:Static resource:ResourceValues.PlaceholderEnterFacilityEmailAddress}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <BoxView HeightRequest="1" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <BoxView.Margin>
+                                <OnPlatform x:TypeArguments="Thickness" Android="0,-5,0,0" iOS="0,5,0,0"/>
+                            </BoxView.Margin>
+                            <BoxView.IsVisible>
+                                <OnPlatform x:TypeArguments="x:Boolean"
+                                  iOS="True"
+                                  Android="False"/>
+                            </BoxView.IsVisible>
+                        </BoxView>
+                        <Label Text="{Binding EmailAddressError}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleEmailAddress}"/>
+                        <Frame HasShadow="False" Padding="7" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Margin="10">
+                            <Label Text="{x:Static resource:ResourceValues.TitleSubmit}" TextColor="{StaticResource AppWhiteColor}"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CommandOnAddNewQuatation}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label TextType="Html" Text="{x:Static resource:ResourceValues.TitleForSendtoVendorMessage}"  LineBreakMode="WordWrap" TextColor="{StaticResource AppBlackColor}"  FontSize="Small" HorizontalOptions="StartAndExpand"  VerticalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </Frame>              
+            </StackLayout>-->
+            <!--<StackLayout Grid.Row="1">
+                <Label Text="OR" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>
+            </StackLayout>-->
+
+<!--===============previous send email to vendor formate=========================-->
+            
+            
+                <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Frame IsVisible="{Binding IsSendQbidViewVisible}" HasShadow="False" BorderColor="{StaticResource AppColor}" Margin="10" CornerRadius="5" Padding="8">
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Text="Click here to Upload your Quote" LineBreakMode="WordWrap" Style="{StaticResource RegistrationEntryLabel}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <StackLayout Grid.Row="1" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Grid ColumnSpacing="20" HorizontalOptions="CenterAndExpand" Grid.Row="1" ColumnDefinitions="50*,50*">
+                                    <Frame Grid.Column="0" HasShadow="False" Padding="7" BackgroundColor="{StaticResource AppColor}" WidthRequest="80"  VerticalOptions="CenterAndExpand" Margin="10" >
+                                        <Label Text="Browse" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}"/>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding GalleryCommand}" CommandParameter="{Binding .}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                    <Frame Grid.Column="1" HasShadow="False" Padding="7" BackgroundColor="{StaticResource AppColor}" WidthRequest="80"  VerticalOptions="CenterAndExpand" Margin="10">
+                                        <Label HorizontalOptions="CenterAndExpand" Text="Camera" TextColor="{StaticResource AppWhiteColor}"/>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CameraCommand}" CommandParameter="{Binding .}"/>
+                                        </Frame.GestureRecognizers>
+
+                                    </Frame>
+                                </Grid>
+                                <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding FileUploaded}" Margin="15,0">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid ColumnDefinitions="19, *">
+                                                <Label Grid.Column="0" Text="{Binding Id}" HorizontalOptions="Start" VerticalOptions="Start"/>
+                                                <Label Grid.Column="1" Text="{Binding Name}" IsVisible="{Binding IsNextEnabled}" TextColor="{StaticResource AppBlackColor}" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" />
+                                            </Grid>
+                                            
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                                
+                                
+                                
+                            </StackLayout>
+                        
+                            <Label Grid.Row="2" TextType="Html" Text="Click here to Upload your quote, enter some information to process your QBID as fast as possible. This process is neccassary for you to 'Hire a Negotiator' in a timely manner. Once Completed Click 'Hire a Negotiator' it's that simple."  LineBreakMode="WordWrap" TextColor="{StaticResource AppBlackColor}"  FontSize="Small" HorizontalOptions="StartAndExpand"  VerticalOptions="FillAndExpand"/>
+                            <Frame Grid.Row="3" IsVisible="{Binding IsNextEnabled}"  HasShadow="False" Padding="7" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0,15,0,0" WidthRequest="105">
+                                <Label Text="Next" TextColor="{StaticResource AppWhiteColor}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding UploadCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                </Frame>
+            </StackLayout>
+            <Grid Grid.Row="0" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait Grid.Row="0" VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+           
+        </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

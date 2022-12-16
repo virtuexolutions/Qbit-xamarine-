@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             xmlns:Res="clr-namespace:QBid.QBidResource" xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:picker="clr-namespace:QBid.Controls"
+             ios:Page.UseSafeArea="true"
+             x:Class="QBid.Views.SelectServiceView" NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <vm:SelectServiceViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{x:Static Res:ResourceValues.LabelBackArrow}" Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommandOnBackForService}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="{x:Static Res:ResourceValues.TitleSelectService}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Large"/>
+            </Grid>
+            <StackLayout Margin="0" BackgroundColor="{StaticResource CardViewBackgroundColor}" Grid.Row="1" Spacing="0"  Orientation="Vertical">
+                <ScrollView>
+                    <FlexLayout BindableLayout.ItemsSource="{Binding SelectServiceList}" Direction="Column" AlignItems="Stretch" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="0" BackgroundColor="{StaticResource AppWhiteColor}" HasShadow="False" Margin="8" CornerRadius="2">
+                                    <Grid VerticalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="60"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70*"/>
+                                            <ColumnDefinition Width="30*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Margin="10,0,10,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Image Source="{Binding ImageName}" HeightRequest="21" WidthRequest="21" VerticalOptions="CenterAndExpand" Aspect="AspectFill">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding OnCheckedCommond}" CommandParameter="{Binding .}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Label Margin="0,0,0,0" Text="{Binding Name}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Row="0" Grid.Column="1" Margin="0,0,0,-10" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <picker:CustomEntry Text="{Binding InYearText}" MaxLength="2" FontSize="Small" Keyboard="Numeric" Placeholder="{x:Static Res:ResourceValues.PlaceholderExp__in_years_}" IsVisible="{Binding IsInYearVisible}" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                                <picker:CustomEntry.Behaviors>
+                                                    <picker:PhoneNumberFormatterRenderer/>
+                                                </picker:CustomEntry.Behaviors>
+                                            </picker:CustomEntry>
+                                            <BoxView HeightRequest="1" IsVisible="{Binding IsInYearVisible}" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <BoxView.Margin>                                                            
+                                                <OnPlatform x:TypeArguments="Thickness"> 
+                                                    <On Platform="iOS" Value="0,0,0,0" /> 
+                                                    <On Platform="Android" Value="0,-10,0,0" /> 
+                                                </OnPlatform> 
+ 
+                                                </BoxView.Margin>
+                                                </BoxView>
+                                        </StackLayout>                                       
+                                        <Label HorizontalOptions="EndAndExpand" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding ErrorTextMessage}" IsVisible="{Binding IsErrorTextVisible}" Style="{StaticResource GlobalErrorMessageTheme}" VerticalOptions="FillAndExpand"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </ScrollView>
+                <StackLayout Orientation="Vertical" Margin="0,20,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                    <Button Text="{x:Static Res:ResourceValues.TitleSave}" TextColor="{StaticResource AppWhiteColor}" FontSize="20" Margin="10,0,10,10" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Command="{Binding CommandOnSaveService}" CommandParameter="{Binding}"/>
+                </StackLayout>
+            </StackLayout>
+            <Loader:CustomLoaderWait VerticalOptions="CenterAndExpand" Grid.RowSpan="2" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>  

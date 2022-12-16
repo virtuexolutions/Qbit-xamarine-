@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             xmlns:resource="clr-namespace:QBid.QBidResource" 
+             xmlns:Loader="clr-namespace:QBid.Views.ContentViews" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="QBid.Views.QueryAndComplaintsListVeiw" Title="{x:Static resource:ResourceValues.TitleQueryAndComplaint}">
+    <!--<NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="{x:Static resource:ResourceValues.TitleQueryAndComplaint}" TextColor="{StaticResource AppWhiteColor}"
+                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="0,0,75,0"  FontSize="20"/>
+        </StackLayout>
+    </NavigationPage.TitleView>-->
+    <ContentPage.BindingContext>
+        <vm:QueryAndComplaintListViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <StackLayout  BackgroundColor="{x:StaticResource AppWhiteColor}">
+        <ListView IsVisible="{Binding IsSuggestion}" SeparatorVisibility="None" x:Name="SuggestionList" ItemsSource="{Binding SuggestionList}" Margin="15" SelectionMode="None" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame HasShadow="False" Margin="5" BorderColor="{x:StaticResource AppColor}" CornerRadius="5" Padding="8" >
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" HorizontalOptions="FillAndExpand" Text="{Binding description}"  FontSize="18"/>
+                                <Label Grid.Row="1" Text="{Binding updated_at, StringFormat='{0:MM/dd/yyyy}'}" FontAttributes="Bold" FontSize="Small" VerticalOptions="End" HorizontalOptions="End" />
+                            </Grid>
+                       
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        <StackLayout  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" IsVisible="{Binding IsSuggestionNotShow}">
+            <Image Source="{x:Static resource:ResourceValues.LabelAppIcon}"  HeightRequest="160" WidthRequest="160"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+            <Label FontSize="20" Margin="0,-50,0,0" FontAttributes="Bold" Text="{x:Static resource:ResourceValues.TextNoSuggestionsyet}" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" />
+        </StackLayout>
+        <Loader:CustomLoaderWait VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+    </StackLayout>
+   
+</ContentPage>

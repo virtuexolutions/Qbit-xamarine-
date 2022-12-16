@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             x:Class="QBid.Views.RegistrationView"
+             xmlns:behavior="clr-namespace:QBid.Behaviors" 
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:picker="clr-namespace:QBid.Controls"
+             xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <vm:RegistrationViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{x:Static resource:ResourceValues.LabelBackArrow}" Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommandOnBackForService}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="{Binding TitelRegistrationPage}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Large"/>
+
+            </Grid>
+            <ScrollView Grid.Row="1">
+                <StackLayout Margin="20,0,20,0" Grid.Row="1" Spacing="0">
+                    <StackLayout Margin="0">
+                        <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsShowHide}">
+                            <Image Grid.Row="1" Margin="0,20,0,20"  Source="{x:Static resource:ResourceValues.SourceQBid_Logo}" Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                        </StackLayout>
+                        <ScrollView>
+                            <StackLayout Spacing="0">
+                                <StackLayout Orientation="Vertical" Spacing="0" HeightRequest="90" IsVisible="{Binding IsShowHide}" >
+                                    <Label Text="{x:Static resource:ResourceValues.TitleUserType}" HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand"/>
+                                    <Grid RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="93*"/>
+                                            <ColumnDefinition Width="7*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Row="1" Grid.Column="1" Source="{x:Static resource:ResourceValues.SourceDownIconBlack}"  Aspect="AspectFit" Margin="0,0,0,0"/>
+                                        <picker:BorderlessPickerRenderer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ListOfUserType}" ItemDisplayBinding="{Binding UserType}" SelectedItem="{Binding UserTypeValue}" Title="Select User Type"  VerticalOptions="CenterAndExpand"/>
+                                    </Grid>
+                                    <BoxView HeightRequest="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></BoxView>
+                                    <Label Text="{Binding UserTypeErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleuserTypeErrorMessage}"/>
+                                     <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CommandOnGetUser}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <StackLayout IsVisible="{Binding IsUserTypeSelected}">
+                                    <StackLayout Orientation="Vertical" Spacing="0" Margin="0,5,0,0">
+                                        <Label  Style="{StaticResource RegistrationEntryLabel}" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleFirstName}" />
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <picker:CustomEntry Text="{Binding FirstName}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderFirstName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding FirstNameErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleFirstNameError}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0">
+                                        <Label Text="{x:Static resource:ResourceValues.TitleLastName}" Style="{StaticResource RegistrationEntryLabel}"  HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand"/>
+                                        <picker:CustomEntry Text="{Binding LastName}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderLastName}" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding LastNameErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleLastNameError}"/>
+                                    </StackLayout>
+                                    <StackLayout IsVisible="{Binding IsNegotiator}" Margin="0,0,0,0">
+                                        <StackLayout Orientation="Vertical" Spacing="0">
+                                            <Label Text="{x:Static resource:ResourceValues.TitleCompanyName}" Style="{StaticResource RegistrationEntryLabel}"  HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand"/>
+                                            <picker:CustomEntry Text="{Binding CompanyName}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderCompanyName}" VerticalOptions="CenterAndExpand"/>
+                                            <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        </StackLayout>
+
+                                        <StackLayout Margin="5" Orientation="Horizontal">
+                                            <CheckBox  IsChecked="{Binding IsRetired}" Color="{StaticResource AppColor}"  IsEnabled="{Binding IsEnableField}"/>
+                                            <Label Text="{x:Static resource:ResourceValues.TitleRetired}" Padding="0,10,10,10"></Label>
+                                            <CheckBox HorizontalOptions="EndAndExpand" Color="{StaticResource AppColor}" IsChecked="{Binding IsSelfEmployed }"  IsEnabled="{Binding IsEnableField}" VerticalOptions="EndAndExpand"/>
+                                            <Label Text="{x:Static resource:ResourceValues.TitleSelfEmployed}" Padding="0,13,0,0"></Label>                                            
+                                        </StackLayout>
+                                       
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsNegotiator}">
+                                        <Label Text="{x:Static resource:ResourceValues.TitleNickName}" Style="{StaticResource RegistrationEntryLabel}"  HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand"/>
+                                        <picker:CustomEntry Text="{Binding NickName}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderNickName}" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding NickNameErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleNickNameError}"/>
+                                    </StackLayout>
+                                    <FlexLayout Margin="5" IsVisible="{Binding IsNegotiator}">
+                                        <CheckBox Color="{StaticResource AppColor}" IsChecked="{Binding  IsDisplayNickName}"  IsEnabled="{Binding IsEnableField}"/>
+                                        <Label Text="{x:Static resource:ResourceValues.TitleCheckHereToDisplayNickName}" Margin="0,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                                    </FlexLayout> 
+
+                                    <StackLayout Margin="5" Orientation="Vertical" IsVisible="{Binding IsMember}"  IsEnabled="{Binding IsEnableField}">
+                                        
+                                        <Label  HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.LabelPreferredContact}" />
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <CheckBox IsChecked="{Binding IsCall}" Color="{StaticResource AppColor}" />
+                                            <Label Text="{x:Static resource:ResourceValues.LabelPhone}" VerticalOptions="CenterAndExpand" Padding="0"/>
+                                            <CheckBox HorizontalOptions="EndAndExpand" Color="{StaticResource AppColor}" IsChecked="{Binding IsText}" VerticalOptions="EndAndExpand"/>
+                                            <Label Text="{x:Static resource:ResourceValues.LabelText}" VerticalOptions="CenterAndExpand" Padding="0"/>
+                                            <CheckBox HorizontalOptions="EndAndExpand" Color="{StaticResource AppColor}" IsChecked="{Binding IsEmail}" VerticalOptions="EndAndExpand"/>
+                                            <Label Text="{x:Static resource:ResourceValues.PlaceholderEmail}" VerticalOptions="CenterAndExpand" Padding="0"/>
+                                        </StackLayout>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding PrefferdErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsPrefferdErrorMessage}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0">
+                                        <Label FontSize="Medium" HorizontalOptions="StartAndExpand" TextColor="{StaticResource AppColor}" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleMobileNumberForText}" />
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <picker:CustomEntry Text="{Binding MobileNumberforText}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" MaxLength="14" Placeholder="{x:Static resource:ResourceValues.PlaceholderMobileNumber}" Keyboard="Telephone" PlaceholderColor="{StaticResource AppGrayColor}" TextColor="{StaticResource AppBlackColor}">                                            
+                                            <picker:CustomEntry.Behaviors>
+                                                <picker:PhoneNumberFormatterRenderer/>
+                                            </picker:CustomEntry.Behaviors>
+                                            <picker:CustomEntry.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness" Android="0" iOS="0" />
+                                            </picker:CustomEntry.Margin>
+                                        </picker:CustomEntry>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding MobileNumberforTextErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsMobileNumberforTextError }"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0">
+                                        <Label Text="{x:Static resource:ResourceValues.TitleMobileNumberForLiveCalls}"  HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand"/>
+                                        
+                                        <picker:CustomEntry Text="{Binding MobileNumberforLiveCalls}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" MaxLength="14" Placeholder="{x:Static resource:ResourceValues.PlaceholderMobileNumber}" Keyboard="Telephone" PlaceholderColor="{StaticResource AppGrayColor}" TextColor="{StaticResource AppBlackColor}">
+                                            <picker:CustomEntry.Behaviors>
+                                                <picker:PhoneNumberFormatterRenderer/>
+                                            </picker:CustomEntry.Behaviors>
+                                            <picker:CustomEntry.Margin>
+                                                <OnPlatform x:TypeArguments="Thickness" Android="0" iOS="0" />
+                                            </picker:CustomEntry.Margin>
+                                        </picker:CustomEntry>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding MobileNumberforLIVECALLSErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsMobileNumberforLIVECALLSError}"/>
+                                    </StackLayout>
+
+                                  
+                                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsShowHide}">
+                                        <Label Style="{StaticResource RegistrationEntryLabel}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
+                                             <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleEmailAddress}"/>
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <picker:CustomEntry Text="{Binding Email}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Placeholder="{x:Static resource:ResourceValues.PlaceholderEmailAddress}" Keyboard="Email" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding EmailErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleEmailError}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0" Margin="0">
+                                        <Label HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleAddressLine1}"/>
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <picker:CustomEntry Text="{Binding AddressLine1}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderAddressLine1}" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding AddressLine1ErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleAddressLine1Error}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0" Margin="0">
+                                        <Label Text="{x:Static resource:ResourceValues.TitleAddressLine2}"  HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand"/>
+                                        <picker:CustomEntry Text="{Binding AddressLine2}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderAddressLine2}" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding AddressLine2ErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleAddressLine2Error}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0" Margin="0">
+                                        <Label  Style="{StaticResource RegistrationEntryLabel}" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand">
+                                             <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleCityName}" />
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <picker:CustomEntry Text="{Binding CityName}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Keyboard="Text" Placeholder="{x:Static resource:ResourceValues.PlaceholderCityName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView  HeightRequest="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding CityErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleCityNameError}"/>
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Vertical" Spacing="0" ><!--HeightRequest="100"-->
+                                        <Label   HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleStateName}" />
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Grid RowSpacing="0" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="93*"/>
+                                                <ColumnDefinition Width="7*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image  Grid.Row="1" Grid.Column="1"  Source="{x:Static resource:ResourceValues.SourceDownIconBlack}"   Aspect="AspectFit" Margin="0,0,0,0" HeightRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding CommandOnGetState}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <picker:BorderlessPickerRenderer  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="{Binding IsEnableField}" 
+                                                                             ItemsSource="{Binding ListOfState}" ItemDisplayBinding="{Binding name}" 
+                                                                             SelectedItem="{Binding StateValue}" Title="Select State"  VerticalOptions="CenterAndExpand"/>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding CommandOnGetState}"/>
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                        <BoxView HeightRequest="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></BoxView>
+                                        <Label Text="{Binding StateNameErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleStateNameError}"/>
+                                    </StackLayout>
+                                  
+                                    <StackLayout Orientation="Vertical" Spacing="0">
+                                        <Label  Style="{StaticResource RegistrationEntryLabel}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleZipCode}"/>
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <picker:CustomEntry Text="{Binding ZipCode}" IsReadOnly="{Binding IsTextReadOnly}" ReturnType="Next" Placeholder="{x:Static resource:ResourceValues.PlaceholderZipCode}" MaxLength="5" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding ZipCodeErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleZipCodeError}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsShowHide}" >
+                                        <Label  HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitlePassword}" />
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="93*"/>
+                                                <ColumnDefinition Width="7*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <picker:CustomEntry Grid.Row="0" Grid.Column="0" ReturnType="Next" Grid.ColumnSpan="2" Text="{Binding Password}" Placeholder="{x:Static resource:ResourceValues.PlaceholderPassword}" IsPassword="{Binding IsPasswordVisible}" MaxLength="16" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                            <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                            <Image Grid.Row="0" Grid.Column="1"  Source="{Binding PasswordImage}"  HeightRequest="20" WidthRequest="20"  Aspect="AspectFit">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding ShowPasswordCommand}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                        <Label Text="{Binding PasswordErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisiblePasswordError}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsShowHide}" >
+                                        <Label   HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:ResourceValues.TitleConfirmPassword}" />
+                                                    <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <picker:CustomEntry Text="{Binding ConfirmPassword}" ReturnType="Done" Placeholder="{x:Static resource:ResourceValues.PlaceholderConfirmPassword}" IsPassword="True" MaxLength="20" VerticalOptions="CenterAndExpand"/>
+                                        <BoxView Margin="0,5,0,0" HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Text="{Binding ConfirmPasswordErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsConfirmPasswordError}"/>
+                                    </StackLayout>
+                                    
+                                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsNegotiator}" >
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Label  HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{x:Static resource:ResourceValues.TitleService}" />
+                                                        <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame Padding="5" BackgroundColor="{StaticResource AppColor}"  IsEnabled="{Binding IsEnableField}" HasShadow="False" HorizontalOptions="EndAndExpand" Margin="5,10,5,5">
+                                                <Label Text="{x:Static resource:ResourceValues.TitleSelectService}" TextColor="{StaticResource AppWhiteColor}"   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer  Command="{Binding CommandOnSelectService}"/>
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                        </StackLayout>
+                                        <Label Text="{Binding SelectService}" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding SelectServiceErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleSelectServiceError}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" Spacing="0" IsVisible="{Binding IsNegotiator}">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Label  HorizontalOptions="StartAndExpand" Style="{StaticResource RegistrationEntryLabel}" VerticalOptions="CenterAndExpand">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span  Text="{x:Static resource:ResourceValues.TitleLanguage}" />
+                                                        <Span Text="*" TextColor="{StaticResource AppRedColor}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame Padding="5"  BackgroundColor="{StaticResource AppColor}" IsEnabled="{Binding IsEnableField}" HasShadow="False" HorizontalOptions="EndAndExpand" Margin="5,10,5,5">
+                                                <Label Text="{x:Static resource:ResourceValues.TitleSelectLanguages}" TextColor="{StaticResource AppWhiteColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding CommandOnChooseLanguage}" />
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                        </StackLayout>
+                                        <Label Text="{Binding Language}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding LanguageErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleLanguageError}"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="10" Orientation="Vertical" IsVisible="{Binding IsShowHide}">
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                            <CheckBox Color="{StaticResource AppColor}"  HorizontalOptions="Start" IsChecked="{Binding IsAccepted}" HeightRequest="20" ></CheckBox>
+                                            <Label FontAttributes="None" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" FontSize="Medium">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{x:Static resource:ResourceValues.TitleAccept} "/>
+                                                        <Span Text="{x:Static resource:ResourceValues.TitleTermsAndConditions}" TextDecorations="Underline" TextColor="{StaticResource AppHyperlinkColor}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding CommandOpenPdf}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </StackLayout>
+                                        <Label Margin="0,0,0,0" Text="{Binding TermsAndConditionErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" IsVisible="{Binding IsVisibleTermsAndConditionError}"/>
+                                    </StackLayout>
+                                                                     
+                                    <Button  IsVisible="{Binding IsSubmitShow}" Text="{x:Static resource:ResourceValues.TitleSubmit}" TextColor="{StaticResource AppWhiteColor}" Command="{Binding CommandOnSignUp}"  Margin="0,20,0,10" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Button Margin="0,20,0,10" IsVisible="{Binding IsEditShow}" Text="{x:Static resource:ResourceValues.TitleEdit}"  TextColor="{StaticResource AppWhiteColor}" Command="{Binding CommandOnEdit}"  BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    <Grid ColumnDefinitions="5*,5*" ColumnSpacing="10" Margin="0,20,0,10">   <!--WidthRequest="150"-->
+                                            <Button Grid.Column="0" IsVisible="{Binding IsCancelShow}" Text="{x:Static resource:ResourceValues.CancelButtontext}"   TextColor="{StaticResource AppWhiteColor}"  Command="{Binding CommandOnCancel}" CommandParameter="{Binding .}"  BackgroundColor="{StaticResource AppRedColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                            <Button Grid.Column="1" IsVisible="{Binding IsUpdateShow}" Text="{x:Static resource:ResourceValues.TitleUpdate}"   TextColor="{StaticResource AppWhiteColor}"   Command="{Binding CommandOnUpdate}" CommandParameter="{Binding .}"  BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </Grid>
+
+
+
+                                    <!--<StackLayout Margin="0,20,0,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                                        
+                                        <Grid ColumnDefinitions="5*,5*" ColumnSpacing="10" Margin="10,0,10,0">   
+                                            <Button Grid.Column="0" IsVisible="{Binding IsCancelShow}" Text="{x:Static resource:ResourceValues.CancelButtontext}"   TextColor="{StaticResource AppWhiteColor}"  Command="{Binding CommandOnCancel}" CommandParameter="{Binding .}"  BackgroundColor="{StaticResource AppRedColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                            <Button Grid.Column="1" IsVisible="{Binding IsUpdateShow}" Text="{x:Static resource:ResourceValues.TitleUpdate}"   TextColor="{StaticResource AppWhiteColor}"   Command="{Binding CommandOnUpdate}" CommandParameter="{Binding .}"  BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </Grid>
+                                        
+                                    </StackLayout>-->
+
+                                </StackLayout>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+            
+            <Grid Grid.RowSpan="2" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.RowSpan="2" BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait Grid.RowSpan="2" VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+
+            <!--Web View for show PDF-->
+            <Grid Grid.Row="1" IsVisible="{Binding IsPDF}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="#464a50" Opacity="0.8">
+                </Grid>
+                <Frame Padding="0" Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
+                        <WebView Source="{Binding PDF}" Navigated="WebView_Navigated" Navigating="WebView_Navigating" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </Frame>                
+            </Grid>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CommandClosePDF}" CommandParameter="{Binding .}"/>
+            </Grid.GestureRecognizers>
+
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

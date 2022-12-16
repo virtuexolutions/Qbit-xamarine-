@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:Tab="clr-namespace:QBid.Views"
+                  xmlns:vm="clr-namespace:QBid.ViewModels"
+                  x:Class="QBid.Views.DashboardView"
+                  NavigationPage.HasNavigationBar="False"
+                  xmlns:resource="clr-namespace:QBid.QBidResource" 
+                  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                  xmlns:local="clr-namespace:QBid.Converters" xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+                  ios:Page.UseSafeArea="true"
+                  x:Name="DashBoard">
+    
+    <MasterDetailPage.BindingContext>
+        <vm:DashboardViewModel x:Name="VM"/>
+    </MasterDetailPage.BindingContext>
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+           
+            <local:StringToTitleCaseConverter x:Key="TitleCaseConverter"/>
+        </ResourceDictionary>
+    </MasterDetailPage.Resources> 
+    <MasterDetailPage.Master>
+        <ContentPage Title="QBid" IconImageSource="{x:Static resource:ResourceValues.SourceMenuIcon}">
+            <Grid Margin="0,0,0,0" BackgroundColor="{StaticResource AppWhiteColor}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="{Binding AppLogo}" HeightRequest="160" WidthRequest="160" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+
+            <Frame Grid.Row="1" Padding="0" HasShadow="False" BackgroundColor="{StaticResource AppLightSkyColor}" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" Margin="0" Spacing="0">
+                        <StackLayout Orientation="Vertical" Margin="0,0,0,5">
+                            <Frame CornerRadius="50" HeightRequest="100" WidthRequest="100" HasShadow="False" Margin="0,-45,0,0" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True" BorderColor="#2a4982">
+                                <Image Source="{Binding ProfileImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="CenterAndExpand">
+                            <Label Text="{Binding FirstName, Converter={StaticResource TitleCaseConverter}}" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="Small" />
+                            <Label Text="{Binding LastName, Converter={StaticResource TitleCaseConverter}}" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Small" />
+                        </StackLayout>
+                        <StackLayout Margin="5,20,0,0">
+                        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsLoggedInUserMember}" Margin="10" Spacing="20">
+                                <Image Source="{x:Static resource:ResourceValues.SourceCreditCard}" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="{x:Static resource:ResourceValues.DashBoardCardPaymentMenu}" TextColor="{StaticResource AppBlackColor}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CommandOnCardDetail}" Tapped="TapGestureRecognizer_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" IsVisible="{Binding IsLoggedInNegotiator}" Margin="10" Spacing="20">
+                            <Image Source="{x:Static resource:ResourceValues.SourceBankAccount}" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.DashBoardBankAccountMenu}" TextColor="{StaticResource AppBlackColor}" FontSize="Medium" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand"/>
+                                <Image Grid.Column="1" Source="{Binding BankAccountStatusImage}" HeightRequest="20" WidthRequest="20" HorizontalOptions="StartAndExpand" />
+                            </Grid>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CommandOnNegotiatorBankAccount}" Tapped="TapGestureRecognizer_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Margin="10" Spacing="20">
+                                <Image Source="{x:Static resource:ResourceValues.SourceComplaint}" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="{x:Static resource:ResourceValues.DashBoardComplaintMenu}" TextColor="{StaticResource AppBlackColor}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CommandOnAddQueryAndComplaint}" Tapped="TapGestureRecognizer_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="10" Spacing="20">
+                                <Image Source="{x:Static resource:ResourceValues.Sourceeditprofile}" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="{x:Static resource:ResourceValues.DashBoardUpdateProfileMenu}" TextColor="{StaticResource AppBlackColor}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnOnUpdateProfile}" Tapped="TapGestureRecognizer_Tapped" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="10" Spacing="20">
+                                <Image Source="{x:Static resource:ResourceValues.SourceAppInfo}" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="{x:Static resource:ResourceValues.DashBoardAppInfoMenu}" TextColor="{StaticResource AppBlackColor}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnHowToUseApp}" Tapped="TapGestureRecognizer_Tapped" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            
+                            <StackLayout Orientation="Horizontal" Margin="10" Spacing="20">
+                                <Image Source="{x:Static resource:ResourceValues.SourceLogOut}" HeightRequest="25" WidthRequest="25" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="{x:Static resource:ResourceValues.DashBoardLogoutMenu}" TextColor="{StaticResource AppBlackColor}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnlogout}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+                <StackLayout Grid.Row="2" HeightRequest="25" Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Text="{x:Static resource:ResourceValues.TextAppVersion}" TextColor="{StaticResource AppGrayColor}" FontSize="Small"/>
+                    <Label Text="{Binding AppVersion}" TextColor="{StaticResource AppGrayColor}" FontSize="Small"/>
+                </StackLayout>
+              
+                <Grid Grid.RowSpan="3" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.RowSpan="3" BackgroundColor="Transparent" Opacity="0.8"/>
+                    <Loader:CustomLoaderWait Grid.RowSpan="3" VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+                </Grid>
+               
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+           
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+
+</MasterDetailPage>

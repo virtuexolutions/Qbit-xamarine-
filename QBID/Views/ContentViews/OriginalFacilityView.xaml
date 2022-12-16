@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QBid.Views.ContentViews.OriginalFacilityView">
+  <ContentView.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
+          <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0">
+                    <Label x:Name="UserName"   TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" BackgroundColor="#E4FDF5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" Grid.Column="0">
+                        <Label x:Name="Original_Price" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+                    <StackLayout  x:Name="OEM1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="1">
+                        <Label  x:Name="OEM" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+                    <StackLayout  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="2">
+                        <StackLayout Orientation="Vertical" Spacing="0">                            
+                            <Label x:Name="NegoName" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout x:Name="ApproveHeader" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Column="3">
+                        <Label x:Name="Approved" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+           
+
+            </Grid>
+  </ContentView.Content>
+</ContentView>

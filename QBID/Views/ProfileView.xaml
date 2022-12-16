@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:QBid.ViewModels"
+             x:Class="QBid.Views.ProfileView"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:panview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             xmlns:local="clr-namespace:QBid.Converters"
+             ios:Page.UseSafeArea="true" Title="{Binding UserType}">
+      
+    <ContentPage.BindingContext>
+        <vm:ProfileViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem IconImageSource="{x:Static resource:ResourceValues.Sourceeditprofile}"  Command="{Binding CommandOnOnUpdateProfile}"
+          Order="Primary" 
+          Priority="0" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>    
+        <ResourceDictionary>               
+            <local:StringToTitleCaseConverter x:Key="TitleCaseConverter"/>    
+        </ResourceDictionary>    
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid BackgroundColor="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid BackgroundColor="{StaticResource AppWhiteColor}" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="160"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Frame  Grid.Row="0" Padding="0" HasShadow="False" VerticalOptions="FillAndExpand"  >
+                    <StackLayout  Orientation="Vertical" Margin="0" Spacing="0">
+                        
+                        <StackLayout Orientation="Vertical" Margin="0,0,0,10">
+                            <Frame CornerRadius="50" HeightRequest="100" WidthRequest="100" HasShadow="False" Margin="0,10,0,0" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True" BorderColor="#2a4982">                               
+                                    <Image  Source="{Binding ProfileImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill"/>                                
+                            </Frame>
+                            <Frame CornerRadius="15"  BackgroundColor="{StaticResource AppColor}" HeightRequest="30" WidthRequest="30" HasShadow="False" Margin="50,-35,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" Padding="0" IsClippedToBounds="True">
+                                <Image Source="{x:Static resource:ResourceValues.SourceWhiteCamera}"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,1,0,0" HeightRequest="20" WidthRequest="20"/>
+                              
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_ShowDrawer"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1"  Orientation="Horizontal" Spacing="5" HorizontalOptions="CenterAndExpand">
+                            <Label Text="{Binding FirstName , Converter={StaticResource TitleCaseConverter}}" TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="Small" />
+                            <Label Text="{Binding LastName , Converter={StaticResource TitleCaseConverter}}"  TextColor="{StaticResource AppBlackColor}" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Small" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsRatingStarShow}">
+                            <Image Source="{x:Static resource:ResourceValues.Sourceicon_star}"  HeightRequest="20" WidthRequest="20" HorizontalOptions="CenterAndExpand" Aspect="AspectFit"/>
+                            <Label Text="{Binding Ratting}" TextColor="{StaticResource AppGrayColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" FontSize="Small"/>
+                        </StackLayout>
+
+
+                    </StackLayout>
+                </Frame>
+                <ScrollView BackgroundColor="Gray" Grid.Row="1" IsVisible="True"  Orientation="Vertical">
+                    <StackLayout Orientation="Vertical" Spacing="0">
+                        <Frame Grid.Row="1"  Padding="20"  HasShadow="False" BackgroundColor="{StaticResource CardViewBackgroundColor}"  HorizontalOptions="FillAndExpand">
+                            <Grid BackgroundColor="{StaticResource CardViewBackgroundColor}" ColumnSpacing="0" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand"><!--"Email"-->
+                                    <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.PlaceholderEmail}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                    <Label Grid.Column="1" Text="{Binding Email}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                </Grid>
+                                <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand">
+                                    <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.LabelContact}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                    <Label Grid.Column="1" Text="{Binding Contact}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                </Grid> 
+                                <Grid Grid.Row="2"  HorizontalOptions="FillAndExpand">
+                                    <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.LabelAddress}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                    <Label Grid.Column="1"  Text="{Binding Address}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                </Grid>
+                                <Grid Grid.Row="3"  HorizontalOptions="FillAndExpand">
+                                    <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.TitleZipCode}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                    <Label Grid.Column="1"  Text="{Binding ZipCode}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                </Grid>
+                                <Grid Grid.Row="4"  HorizontalOptions="FillAndExpand" IsVisible="{Binding IsShowHide}">
+                                    <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.LabelLanguage}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                    <Label Grid.Column="1"  Text="{Binding Language}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                </Grid>
+                                <Grid Grid.Row="5"  HorizontalOptions="FillAndExpand" IsVisible="{Binding IsShowHide}">
+                                    <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.LabelServices}" TextColor="{StaticResource AppBlackColor}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                    <Label Grid.Column="1"  Text="{Binding Services}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                </Grid> 
+                                <Grid Grid.Row="6"  HorizontalOptions="FillAndExpand" IsVisible="{Binding IsShowHide}">
+                                    <Label Grid.Column="0"  Text="{x:Static resource:ResourceValues.TitleCompanyName}" TextColor="{StaticResource AppBlackColor}" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                    <Label Grid.Column="1"  Text="{Binding CompanyName}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                </Grid>
+
+                            </Grid>
+                        </Frame>
+                        <Frame  Grid.Row="2" Padding="15" HasShadow="False" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource AppWhiteColor}" HorizontalOptions="FillAndExpand">
+                            <behaviors:Expander IsExpanded="True" >
+                                <behaviors:Expander.Header>
+                                    <Grid>
+                                        <panview:PancakeView CornerRadius="10,10,0,0"  >  <!--Shadow="{panview:ShadowMarkup Color=#FF0000, Offset='10,10'}"-->    
+                                            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource AppColor}">
+                                                <Label Text="{Binding QbidStatusName}" TextColor="{StaticResource AppWhiteColor}" Padding="10" FontAttributes="Bold" FontSize="Small"/>
+                                                <Image Source="expand.png" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="15" WidthRequest="15" Margin="5">
+                                                    <Image.Triggers>
+                                                        <DataTrigger TargetType="Image" Binding="{Binding Source={RelativeSource AncestorType={x:Type behaviors:Expander}}, Path=IsExpanded}" Value="True">
+                                                            <Setter Property="Source" Value="collapse.png" />
+                                                        </DataTrigger>
+                                                    </Image.Triggers>
+                                                </Image>
+                                            </StackLayout>
+                                        </panview:PancakeView>
+                                    </Grid>
+                                </behaviors:Expander.Header>
+                                <Frame HasShadow="False" BackgroundColor="{StaticResource AppWhiteColor}"  Margin="0" CornerRadius="0">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Row="0" HorizontalOptions="FillAndExpand"  >
+                                            <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelTotalQbid}" TextColor="{StaticResource AppBlackColor}"  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Grid.Column="1" Text="{Binding TotalQbid}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                        </Grid >
+
+                                        <Grid Grid.Row="1"  HorizontalOptions="FillAndExpand"  >
+                                            <Label  Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelTotalApproved}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label  Grid.Column="1" Text="{Binding TotalApproved}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" >
+                                            <Label  Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelTotalDeclined}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label  Grid.Column="1" Text="{Binding TotalDeclined}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="3" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" >
+                                            <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelTotalInProgress}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Grid.Column="1" Text="{Binding TotalInProgress}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="4" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" IsVisible="{Binding IsvisibleForMember}" >
+                                            <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelYTDSaving}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Grid.Column="1" Text="{Binding TotalSaving}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                        </Grid>
+                                        
+                                        <Grid Grid.Row="5"  HorizontalOptions="FillAndExpand"  IsVisible="{Binding Isvisible}">
+                                            <Label  Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelTodaysBonusEarned}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label  Grid.Column="1" Text="{Binding TotalBonus}"  TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="6" HorizontalOptions="FillAndExpand"  IsVisible="{Binding Isvisible}" >
+                                            <Label  Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelTodaysCommission}"  TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label  Grid.Column="1" Text="{Binding TotalCommision}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small"/>
+                                        </Grid>
+
+                                        <Grid Grid.Row="7" HorizontalOptions="FillAndExpand" IsVisible="{Binding Isvisible}"  >
+                                            <Label Grid.Column="0" Text="{x:Static resource:ResourceValues.LabelYTDEarning}" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Grid.Column="1" Text="{Binding TotalEarning}" TextColor="{StaticResource AppGrayColor}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" FontSize="Small"/>
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+                            </behaviors:Expander>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <Button Grid.Row="2" Margin="20,0,20,0"  VerticalOptions="End" Text="{x:Static resource:ResourceValues.ButtonDeleteProfile}" BackgroundColor="{StaticResource AppRedColor}" TextColor="{StaticResource AppWhiteColor}" FontAttributes="Bold" FontSize="13" Command="{Binding CommandOnDeleteAccount}" CommandParameter="{Binding .}"/>
+                <!--photo Popup Section-->                      
+            </Grid>
+      
+          
+            <BoxView Grid.Row="0" Grid.RowSpan="2"  VerticalOptions="FillAndExpand" IsVisible="false" HorizontalOptions="FillAndExpand" x:Name="UploadProfileBackground" BackgroundColor="{x:StaticResource AppBlackColor}" Opacity="0.4">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_HideDrawer"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <panview:PancakeView Grid.Row="0" Grid.RowSpan="2" IsVisible="False" x:Name="UploadProfile" HeightRequest="150" CornerRadius="20,20,0,0"  VerticalOptions="EndAndExpand" BackgroundColor="{x:StaticResource AppLightSkyColor}">
+                <StackLayout>
+                    <StackLayout>
+                        <BoxView HeightRequest="2" HorizontalOptions="CenterAndExpand" WidthRequest="60" CornerRadius=".5" VerticalOptions="StartAndExpand" BackgroundColor="{x:StaticResource AppBlackColor}" Margin="0,10,0,0"/>
+                        <StackLayout.GestureRecognizers>
+                            <DragGestureRecognizer DragStarting="DragGestureRecognizer_DragStarting"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="95*"/>
+                                <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"  Margin="0,0,-22,0" TextColor="{x:StaticResource AppBlackColor}"  FontSize="Medium" FontAttributes="Bold" Text="{x:Static resource:ResourceValues.TextProfilePhoto}"  />
+                        <Image  IsVisible="{Binding IsVisibleDeleteBTN}" Source="{x:Static resource:ResourceValues.SourceDelete}"  VerticalOptions="Center" HorizontalOptions="EndAndExpand" HeightRequest="30" Margin="0,0,0,0" WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_DeleteClick"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        </Grid>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                  
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_GalleryClick"/>
+                                </StackLayout.GestureRecognizers>
+                                <Image  Source="{x:Static resource:ResourceValues.SourceGallery}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="45"  WidthRequest="45"/>
+                                <Label Text="{x:Static resource:ResourceValues.TitelGallery}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small" FontFamily="{DynamicResource RegularFontStyle}" TextColor="Black"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"  Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                  
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_CameraClick"/>
+                                </StackLayout.GestureRecognizers>
+                                <Image Grid.Row="0" Source="{x:Static resource:ResourceValues.SourceCamera}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="45" WidthRequest="45"/>
+                                <Label Text="{x:Static resource:ResourceValues.TitelCamera}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Small" FontFamily="{DynamicResource RegularFontStyle}" TextColor="Black"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+                <panview:PancakeView.GestureRecognizers>
+                    <DragGestureRecognizer DragStarting="DragGestureRecognizer_DragStarting"/>
+                </panview:PancakeView.GestureRecognizers>
+            </panview:PancakeView>
+                       
+            <Grid Grid.Row="0" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid  BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait  VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+            
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>
+    

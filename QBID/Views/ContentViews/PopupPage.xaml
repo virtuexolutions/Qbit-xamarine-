@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"     
+x:Class="QBid.Views.ContentViews.PopupPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+        PositionIn="Center"
+        PositionOut="Center"
+        ScaleIn="1.2"
+        ScaleOut="0.8"
+        DurationIn="400"
+        DurationOut="300"
+        EasingIn="SinOut"
+        EasingOut="SinIn"
+        HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource AppGrayColor}" Margin="10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Opacity="0.7" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            <Frame HeightRequest="80" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <Label x:Name="lblTitelName" Text="Are you sure you want to submit the negotiated price?" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="StartAndExpand"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                        <Button x:Name="YesBtn" TextColor="{StaticResource AppWhiteColor}" WidthRequest="70" Text="OK" BackgroundColor="{StaticResource AppColor}"/>
+
+                        <Button x:Name="NoBtn"  TextColor="{StaticResource AppWhiteColor}" WidthRequest="100"  Text="Cancel" BackgroundColor="{StaticResource AppRedColor}"/>
+
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+    </StackLayout>
+
+</pages:PopupPage>

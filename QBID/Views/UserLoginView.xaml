@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:QBid.ViewModels" xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             x:Class="QBid.Views.UserLoginView"
+             xmlns:picker="clr-namespace:QBid.Controls"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <vm:UserLoginViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="{StaticResource AppColor}" Padding="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{x:Static resource:ResourceValues.TitleLogin}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" FontSize="Large"/>
+            </Grid>
+
+            <ScrollView Grid.Row="1">
+                <StackLayout Margin="20,0,20,0" Grid.Row="1" Spacing="0">
+                    <StackLayout Margin="0">
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Image Grid.Row="1" Margin="0,30,0,30" Source="{x:Static resource:ResourceValues.SourceQBid_Logo}"  Aspect="AspectFit" HeightRequest="40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" ></Image>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{x:Static resource:ResourceValues.TitleUserType}"  Style="{StaticResource LoginEntryLabel}"  HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand"/>
+                            <Grid RowDefinitions="Auto" ColumnDefinitions="*,Auto">
+                                <Image Source="{x:Static resource:ResourceValues.SourceDownIconBlack}"  Grid.Row="0" Grid.Column="1" Aspect="AspectFit" Margin="0,0,0,0" HeightRequest="30" ></Image>
+                                <picker:BorderlessPickerRenderer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ListOfUserType}" ItemDisplayBinding="{Binding UserType}" SelectedItem="{Binding UserTypeValue}" Title="{x:Static resource:ResourceValues.PlaceholderUserType} " VerticalOptions="CenterAndExpand"/>
+                            </Grid>
+                            <BoxView HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Label Text="{Binding UserTypeErrorMessage}" IsVisible="{Binding IsVisibleuserTypeErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" Margin="5"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CommandOnGetUser}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Spacing="0"  >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="93*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Source="{x:Static resource:ResourceValues.SourceUserIcon}"  Aspect="AspectFit"/>
+                                <picker:CustomEntry Grid.Row="0" ReturnType="Next" Grid.Column="1" Text="{Binding Username}" BackgroundColor="Transparent" Placeholder="{x:Static resource:ResourceValues.PlaceholderEmail}" Keyboard="Email" VerticalOptions="CenterAndExpand"/>
+                                <BoxView HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></BoxView>
+                            </Grid>
+                            <Label Text="{Binding UsernameErrorMsg}" IsVisible="{Binding IsVisibleUsernameError}" Style ="{StaticResource GlobalErrorMessageTheme}" Margin="5" />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Spacing="0" Margin="0,15,0,0"  >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="93*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Row="0" Grid.Column="0" Source="{x:Static resource:ResourceValues.SourcePasswordIcon}" Aspect="AspectFit"/>
+                                <picker:CustomEntry Grid.Row="0" ReturnType="Done" Grid.Column="1" Text="{Binding Password}" Placeholder="{x:Static resource:ResourceValues.PlaceholdPassword}"  IsPassword="True" VerticalOptions="CenterAndExpand"/>
+                                <BoxView HeightRequest="1" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource AppBlackColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></BoxView>
+                            </Grid>
+                            <Label Text="{Binding PasswordErrorMsg}" IsVisible="{Binding IsVisiblePasswordError}" Style ="{StaticResource GlobalErrorMessageTheme}" Margin="5,0,0,0" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="-5,0,0,20">
+                            <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
+                                <CheckBox IsChecked="{Binding IsRememberPassword}" Color="{StaticResource AppColor}"/>
+                                <Label Text="{x:Static resource:ResourceValues.TitleRememberMe}" FontSize="Small" FontAttributes="None" Margin="0,0,8,0" HorizontalOptions="StartAndExpand" TextColor="{StaticResource AppBlackColor}" VerticalOptions="Center"/>
+                            </StackLayout>
+                            <Label Text="{x:Static resource:ResourceValues.TitleForgotPassword}" FontSize="Small" FontAttributes="Bold" Margin="0,0,8,0" HorizontalOptions="EndAndExpand" TextColor="{StaticResource AppColor}" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnForgotPassword}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                        <Button Text="{x:Static resource:ResourceValues.TitleLogin}" TextColor="{StaticResource AppWhiteColor}" BackgroundColor="{StaticResource AppColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Command="{Binding LoginOnCommand}"/>
+
+                        <StackLayout Orientation="Horizontal" Margin="0,30,0,10" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+                            <Label Text="{x:Static resource:ResourceValues.TitleDontHaveAnAccount} " FontSize ="Small" FontAttributes="Bold" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="{x:Static resource:ResourceValues.TitleSignUp}" FontSize="Small" FontAttributes="Bold" TextColor="{StaticResource AppColor}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandOnSignUP}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <Label Text="{x:Static resource:ResourceValues.TitleQuickAppTour}" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource AppColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CommandOnQuickAppTour}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                       
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <Loader:CustomLoaderWait Grid.Row="1" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            
+            <StackLayout Grid.Row="2" HeightRequest="25" Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label  Text="{x:Static resource:ResourceValues.TextAppVersion}" TextColor="{StaticResource AppGrayColor}" FontSize="Small"/>
+                <Label  Text="{Binding AppVersion}" TextColor="{StaticResource AppGrayColor}" FontSize="Small"/>
+            </StackLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

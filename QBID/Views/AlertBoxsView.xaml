@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resource="clr-namespace:QBid.QBidResource"
+             xmlns:vm="clr-namespace:QBid.ViewModels" 
+             xmlns:Loader="clr-namespace:QBid.Views.ContentViews"
+             x:Class="QBid.Views.AlertBoxsView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true">
+    <ContentPage.BindingContext>
+        <vm:AlertBoxViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Frame Padding="0" CornerRadius="10" Opacity="0.6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" BackgroundColor="LightGray">
+                    <Frame HasShadow="False" Padding="0" Opacity="1" BackgroundColor="{StaticResource AppWhiteColor}" CornerRadius="10" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid Margin="10" VerticalOptions="CenterAndExpand" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackLayout  Grid.Row="0" Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                <CheckBox Color="{StaticResource AppColor}" Margin="10" IsChecked="{Binding IsCheckedAcceptRights}"/>
+                                <Label FontAttributes="None"  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static resource:ResourceValues.LabelIAgreeTo}" TextColor="{StaticResource AppBlackColor}"/>
+                                            <Span Text="{x:Static resource:ResourceValues.TitleAcceptRightAndProvision}"  TextDecorations="Underline" TextColor="{StaticResource AppHyperlinkColor}"/>
+                                            
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CommandOpenPdf}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <StackLayout  Grid.Row="1" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                <Label FontAttributes="None" Margin="70,-10,0,0"  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="Medium">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="and " TextColor="{StaticResource AppBlackColor}"/>
+                                            <Span Text="{x:Static resource:ResourceValues.TitleTermofUse}" TextDecorations="Underline" TextColor="{StaticResource AppHyperlinkColor}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CommandOpenTermofUsePdf}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <Label Grid.Row="2" Text="{Binding AcceptRightAndProvisionErrorMessage}" IsVisible="{Binding IsVisibleAcceptRightAndProvisionErrorMessage}" Style="{StaticResource GlobalErrorMessageTheme}" Margin="20,0,0,0"/>
+                            <Button Grid.Row="3" WidthRequest="100" Text="Accept" FontAttributes="Bold" BackgroundColor="{StaticResource AppColor}" Command="{Binding CommandOnAcceptRightsAndProvision}" TextColor="{StaticResource AppWhiteColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0"/>
+                        </Grid>
+                    </Frame>
+                </Frame>
+            </StackLayout>
+
+            <Grid Grid.Row="0" IsVisible="{Binding IsLoader}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="Transparent" Opacity="0.8"/>
+                <Loader:CustomLoaderWait Grid.Row="0" VerticalOptions="CenterAndExpand" IsVisibleAndIsRunning="{Binding IsLoader}"/>
+            </Grid>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

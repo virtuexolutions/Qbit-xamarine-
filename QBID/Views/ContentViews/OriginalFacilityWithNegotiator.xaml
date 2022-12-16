@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QBid.Views.ContentViews.OriginalFacilityWithNegotiator">
+    <ContentView.Content>
+        <Grid  VerticalOptions="FillAndExpand">
+             <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>               
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="Auto"/>
+               
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0">
+                <Label x:Name="UserName" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+            </StackLayout>
+            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource AppColorLight}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition x:Name="oEMColWidth" Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0">
+                        <Label  x:Name="Original_Price" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1">
+                        <Label x:Name="OEM" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="2">
+                       
+                        <Label  x:Name="NegoName"  TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Small"/>
+                      
+                    </StackLayout>
+                    <StackLayout Grid.Column="3">
+                        <Label x:Name="Approved" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+                </Grid>
+
+            </StackLayout>
+            <StackLayout Grid.Column="2" Orientation="Horizontal" BackgroundColor="#FEEFDE">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" BackgroundColor="#FEEFDE">
+                        <StackLayout Orientation="Vertical" Spacing="0" HeightRequest="45">
+                            <Label Text="Vendor Info" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout  Grid.Column="1" BackgroundColor="#FEEFDE">
+                        <Label x:Name="NegoOEM" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+
+                    <StackLayout  BackgroundColor="#FEEFDE" Grid.Column="2">
+                           
+                            <Label x:Name="Nego_Price" TextColor="{StaticResource AppBlackColor}" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+
+                    <StackLayout  Grid.Column="3" BackgroundColor="#FEEFDE" HorizontalOptions="FillAndExpand">
+                        <Label  x:Name="NegoApproved" TextColor="{StaticResource AppBlackColor}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Small"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
